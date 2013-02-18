@@ -45,7 +45,7 @@ PATHDIRS=(
 /usr/local/sbin
 /usr/texbin
 $HOME/.rvm/bin/
-# $HOME/bin
+$HOME/bin
 )
 
 path=($path $dir)
