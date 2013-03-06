@@ -16,6 +16,9 @@ set nolist
 "http://vimcasts.org/episodes/formatting-text-with-par/
 set formatprg=par
 
+" http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
+autocmd BufEnter * silent! lcd %:p:h
+
 "commands :bnext, :bprevious and :buffer won't abandon the buffer until any changes have been written
 set hidden
 
