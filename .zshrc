@@ -86,6 +86,5 @@ alias got='git'
 alias get='git'
 
 alias mvim='mvim --remote-silent'
-alias gcc='gcc -ansi -O2 -pandatic -Wall -lm -g'
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
