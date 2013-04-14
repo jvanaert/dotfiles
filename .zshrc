@@ -87,4 +87,4 @@ alias get='git'
 
 alias mvim='mvim --remote-silent'
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin:/usr/local/gnat/bin # Add RVM to PATH for scripting
