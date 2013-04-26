@@ -6,6 +6,6 @@ stuff updated if I make some changes.
 Most of these will be personal notes to myself, as a form of reminder.
 
 ## Remember to get
-  - [Oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
-  - [Janus](https://github.com/carlhuda/janus)
-  - [Solarized-vim](https://github.com/altercation/vim-colors-solarized)
+They are required for config files .vimrc and .zshrc
+  - [Vundle for vim](https://github.com/gmarik/vundle)
+  - [Antigen for zsh](https://github.com/zsh-users/antigen)
