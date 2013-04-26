@@ -5,7 +5,8 @@ stuff updated if I make some changes.
 
 Most of these will be personal notes to myself, as a form of reminder.
 
-## Remember to get
-They are required for config files .vimrc and .zshrc
+## Remember, you already have
+They are required for config files .vimrc and .zshrc and should be
+loaded automatically due to them being loaded in these files
   - [Vundle for vim](https://github.com/gmarik/vundle)
   - [Antigen for zsh](https://github.com/zsh-users/antigen)
