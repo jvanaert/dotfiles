@@ -3,7 +3,6 @@ set rtp+=~/submodules/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'vim-ruby/vim-ruby'
 "Bundle 'scrooloose/nerdcommenter'
@@ -13,6 +12,11 @@ Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/syntastic'
 Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+
+" Themes
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'nanotech/jellybeans.vim'
+
 
 " Make Nerd Tree smaller
 let NERDTreeWinSize=16
@@ -144,6 +148,7 @@ set gdefault
 
 " OPTIONAL: This enables automatic indentation as you type.
 filetype indent plugin on
+au BufRead,BufNewFile *.junta set filetype=junta
 set shellslash
 set grepprg=grep\ -nH\ $*
 
@@ -169,6 +174,6 @@ colorscheme solarized
 
 if has('gui_running')
   set background=dark
-  colorscheme solarized
+  colorscheme solarized 
   set guioptions=egmrt
 endif
