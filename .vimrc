@@ -25,7 +25,7 @@ let NERDTreeWinSize=16
 
 autocmd VimEnter * wincmd l
 
-" have long lines wrap by defaults
+" have long lines wrap by default
 set wrap
 set linebreak
 set nospell
@@ -39,7 +39,6 @@ set nocompatible
 " Always display status line
 set laststatus=2
 
-
 "http://vimcasts.org/episodes/formatting-text-with-par/
 set formatprg=par
 
@@ -48,6 +47,7 @@ autocmd BufEnter * silent! lcd %:p:h
 
 "commands :bnext, :bprevious and :buffer won't abandon the buffer until any changes have been written
 set hidden
+set number
 
 " fix regexes default regex handling by auto-inserting \v before every REGEX.
 " Now regexs are Ruby compatible
@@ -58,7 +58,7 @@ vnoremap / /\v
 let mapleader = ","
 
 " Map ESC to jj and save my pinky   
-" imap jj <ESC>
+"imap jj <ESC>
 
 " Switch between buffers noremap <tab> <C-w><C-w>
 " :bd deletes the current buffer (all windows of)
@@ -117,7 +117,7 @@ set statusline+=\ [%b][0x%B]
 
 " Spell checking
 set spell
-set spelllang=en_gb
+set spelllang=en_us
 
 " Indent with 2 spaced
 set expandtab
@@ -135,7 +135,6 @@ set gdefault
 
 " OPTIONAL: This enables automatic indentation as you type.
 filetype indent plugin on
-au BufRead,BufNewFile *.junta set filetype=junta
 set shellslash
 set grepprg=grep\ -nH\ $*
 
