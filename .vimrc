@@ -1,5 +1,5 @@
 " Vundle
-set rtp+=~/submodules/vundle/
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
@@ -12,6 +12,7 @@ Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-markdown'
+Bundle 'cespare/vim-bclose'
 Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 
 " Themes
@@ -81,12 +82,6 @@ nnoremap <leader>a :Ack
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
-" Remove toolbar in MacVim
-"if has("gui_running")
-"  set background=dark
-"  set guioptions=egmrt
-"endif
-
 " ease of use keyboard mappings (why do I care about top/bottom of screen?)
 map H ^
 map L $
@@ -107,7 +102,6 @@ inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 
-
 " easier quitting
 " save and close all
 nmap <leader>q :wqa!<CR>
@@ -124,14 +118,6 @@ set statusline+=\ [%b][0x%B]
 " Spell checking
 set spell
 set spelllang=en_gb
-
-" Splits  ,v to open a new vertical split and switch to it
-nnoremap <leader>v <C-w>v<C-w>l
-" Move between splits
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 " Indent with 2 spaced
 set expandtab
