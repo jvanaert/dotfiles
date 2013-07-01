@@ -17,6 +17,7 @@ antigen apply
 
 # Path
 PATHDIRS=(
+#/usr/local/gnat/bin
 /usr/local/bin
 /usr/local
 /usr/bin
@@ -67,4 +68,3 @@ alias get='git'
 
 alias mvim='mvim --remote-silent'
 
-PATH=$PATH:$HOME/.rvm/bin:/usr/local/gnat/bin:$HOME/bin
