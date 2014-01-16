@@ -67,4 +67,4 @@ alias got='git'
 alias get='git'
 
 alias mvim='mvim --remote-silent'
-
+alias archey='archey -c'
