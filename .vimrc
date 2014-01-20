@@ -1,6 +1,16 @@
 " Vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+"set rtp+=~/.vim/bundle/vundle/
+"call vundle#rc()
+
+if has("win32")
+  let VIMFILES="$HOME/vimfiles" 
+else
+  let VIMFILES="$HOME/.vim"
+endif
+
+let &runtimepath .= "," . VIMFILES . "/bundle/vundle"
+call vundle#rc(VIMFILES . '/bundle/')
+
 
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
@@ -130,6 +140,8 @@ nmap <leader>q :wqa!<CR>
 nmap <leader>w :w!<CR>
 nmap <leader><Esc> :q!<CR>
 
+imap <C-BS> <C-W>
+
 " Spell checking
 set spell
 set spelllang=en_us,da
@@ -204,7 +216,20 @@ colorscheme solarized
 if has('gui_running')
   set background=light
   colorscheme solarized 
-  set transparency=1
   set guioptions=egmrt
-  set guifont=Source\ Code\ Pro
+  "set guifont=Source\ Code\ Pro
+  set guifont=Consolas:h11
+  
+  "Remove menubar and toolbar
+  set guioptions -=m
+  set guioptions -=T
+endif
+
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Darwin\n"
+    if has('gui_running')
+      set transparency=1
+    endif
+  endif
 endif
