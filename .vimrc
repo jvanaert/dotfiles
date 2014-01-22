@@ -11,6 +11,25 @@ else
   let VIMFILES="$HOME/.vim"
 endif
 
+if has("mac")
+  let g:Tex_ViewRule_pdf = "open"
+  if has('gui_running')
+    set transparency=1
+  endif
+endif
+
+if has('gui_running')
+  set background=light
+  colorscheme solarized 
+  set guioptions=egmrt
+  "set guifont=Source\ Code\ Pro
+  set guifont=Consolas:h11
+  
+  "Remove menubar and toolbar
+  set guioptions -=m
+  set guioptions -=T
+endif
+
 let &runtimepath .= "," . VIMFILES . "/bundle/vundle"
 call vundle#rc(VIMFILES . '/bundle/')
 
@@ -196,9 +215,6 @@ let g:Tex_DefaultTargetFormat = "pdf"
 let g:Tex_CompileRule_pdf = "pdflatex -interaction=nonstopmode $*"
 let g:Tex_MultipleCompileFormats = "pdf, aux"
 
-if has("mac")
-  let g:Tex_ViewRule_pdf = "open"
-endif
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -222,23 +238,4 @@ syntax enable
 set background=light
 colorscheme solarized
 
-if has('gui_running')
-  set background=light
-  colorscheme solarized 
-  set guioptions=egmrt
-  "set guifont=Source\ Code\ Pro
-  set guifont=Consolas:h11
-  
-  "Remove menubar and toolbar
-  set guioptions -=m
-  set guioptions -=T
-endif
 
-if has("unix")
-  let s:uname = system("uname")
-  if s:uname == "Darwin\n"
-    if has('gui_running')
-      set transparency=1
-    endif
-  endif
-endif
