@@ -4,6 +4,9 @@
 
 if has("win32")
   let VIMFILES="$HOME/vimfiles" 
+  map <C-t> :tabnew<CR>
+  map <M-left> :tabprev<CR>
+  map <M-right> :tabnext<CR>
 else
   let VIMFILES="$HOME/.vim"
 endif
@@ -110,6 +113,9 @@ nmap <leader>l <C-w><C-l>
 nmap <leader>n :tabnext
 nmap <leader>N :tabprev
 
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
 " get rid of annoying backup behaviour
 set nobackup
 set nowritebackup
@@ -207,6 +213,9 @@ set wildmenu
 " Syntax highlighting of different languages
 au BufRead,BufNewFile *.mod set filetype=ampl 
 au BufRead,BufNewFile *.tikz set filetype=tex
+
+" 4 indents in python files only
+au Filetype python setl et ts=4 sw=4
 
 " Solarized-vim
 syntax enable
