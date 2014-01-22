@@ -7,6 +7,8 @@ if has("win32")
   map <C-t> :tabnew<CR>
   map <M-left> :tabprev<CR>
   map <M-right> :tabnext<CR>
+  set backspace=2
+  set backspace=indent,eol,start
 else
   let VIMFILES="$HOME/.vim"
 endif
@@ -231,7 +233,8 @@ au BufRead,BufNewFile *.mod set filetype=ampl
 au BufRead,BufNewFile *.tikz set filetype=tex
 
 " 4 indents in python files only
-au Filetype python setl et ts=4 sw=4
+autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
 " Solarized-vim
 syntax enable
