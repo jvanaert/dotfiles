@@ -4,37 +4,12 @@
 
 if has("win32")
   let VIMFILES="$HOME/vimfiles" 
-  map <C-t> :tabnew<CR>
-  map <M-left> :tabprev<CR>
-  map <M-right> :tabnext<CR>
-  set backspace=2
-  set backspace=indent,eol,start
 else
   let VIMFILES="$HOME/.vim"
 endif
 
-if has("mac")
-  let g:Tex_ViewRule_pdf = "open"
-  if has('gui_running')
-    set transparency=1
-  endif
-endif
-
-if has('gui_running')
-  set background=light
-  colorscheme solarized 
-  set guioptions=egmrt
-  "set guifont=Source\ Code\ Pro
-  set guifont=Consolas:h11
-  
-  "Remove menubar and toolbar
-  set guioptions -=m
-  set guioptions -=T
-endif
-
 let &runtimepath .= "," . VIMFILES . "/bundle/vundle"
 call vundle#rc(VIMFILES . '/bundle/')
-
 
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
@@ -228,6 +203,9 @@ let g:ctrlp_cmd = 'CtrlP'
 set wildmode=longest,list,full
 set wildmenu
 
+" Turn on syntax highlighting
+syntax on
+
 " Syntax highlighting of different languages
 au BufRead,BufNewFile *.mod set filetype=ampl 
 au BufRead,BufNewFile *.tikz set filetype=tex
@@ -236,9 +214,31 @@ au BufRead,BufNewFile *.tikz set filetype=tex
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
-" Solarized-vim
-syntax enable
-set background=light
-colorscheme solarized
+" OS specific settings below
+if has('win32')
+  map <C-t> :tabnew<CR>
+  map <M-left> :tabprev<CR>
+  map <M-right> :tabnext<CR>
+  set backspace=2
+  set backspace=indent,eol,start
+endif
 
+if has('mac')
+  let g:Tex_ViewRule_pdf = "open"
+  if has('gui_running')
+    set transparency=1
+  endif
+endif
+
+if has('gui_running')
+  set background=light
+  colorscheme solarized 
+  set guioptions=egmrt
+  "set guifont=Source\ Code\ Pro
+  set guifont=Consolas:h11
+  
+  "Remove menubar and toolbar
+  set guioptions -=m
+  set guioptions -=T
+endif
 
