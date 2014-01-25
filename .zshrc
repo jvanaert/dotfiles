@@ -68,3 +68,5 @@ alias get='git'
 
 alias mvim='mvim --remote-silent'
 alias archey='archey -c'
+
+alias bx='bundle exec'
