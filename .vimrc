@@ -1,7 +1,3 @@
-" Vundle
-"set rtp+=~/.vim/bundle/vundle/
-"call vundle#rc()
-
 if has("win32")
   let VIMFILES="$HOME/vimfiles" 
 else
