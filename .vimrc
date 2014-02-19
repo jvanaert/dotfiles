@@ -17,10 +17,12 @@ Bundle 'mileszs/ack.vim'
 Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-markdown'
+Bundle 'tpope/vim-fugitive'
 " Bundle 'cespare/vim-bclose'
 Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 Bundle 'bling/vim-airline'
 Bundle 'nvie/vim-flake8'
+Bundle 'christoomey/vim-tmux-navigator'
 " Bundle 'AutoComplPop'
 
 " Themes
@@ -28,8 +30,11 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'nanotech/jellybeans.vim'
 
 
-" Make Nerd Tree smaller
-let NERDTreeWinSize=16
+let NERDTreeWinSize=40
+
+" To fix vim running ruby
+" See https://stackoverflow.com/questions/20238739/ruby-segmentation-fault-under-vim
+set shell=/bin/sh
 
 autocmd VimEnter * wincmd l
 
@@ -37,7 +42,6 @@ autocmd VimEnter * wincmd l
 set nocompatible
 set wrap
 set linebreak
-set nospell
 
 set hlsearch                   " highlight search
 set ignorecase                 " be case insensitive when searching
@@ -95,11 +99,34 @@ set fo-=t                      " Do no auto-wrap text using textwidth (does
 " :bd deletes the current buffer (all windows of)
 nmap <leader>d :bd<CR>
 
+""""""""""""""""""""""""""
+" Autocompletion
+""""""""""""""""""""""""""
+imap <Tab> <C-P>
+set complete=.,b,u,]
+set omnifunc=syntaxcomplete#Complete
+
+""""""""""""""""""""""""""
+" Windows
+""""""""""""""""""""""""""
+
 " Leader-<movement> for moving around in windows
 nmap <leader>h <C-w><C-h>
 nmap <leader>j <C-w><C-j>
 nmap <leader>k <C-w><C-k>
 nmap <leader>l <C-w><C-l>
+
+" Also rebind ctrl-jklh to move windows
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" More natural split opening
+set splitbelow
+set splitright
+
+""""""""""""""""""""""""""
 
 " Moving between tabs
 nmap <leader>n :tabnext
@@ -107,6 +134,9 @@ nmap <leader>N :tabprev
 
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
+
+" Remap alt-i to meta-i
+set <m-i>=^[i
 
 " get rid of annoying backup behaviour
 set nobackup
@@ -141,8 +171,9 @@ nmap <leader><Esc> :q!<CR>
 imap <C-BS> <C-W>
 
 " Spell checking
-set spell
+"set spell
 set spelllang=en_us,da
+autocmd BufNewFile,BufRead *.tex set spell
 
 " Indent with 2 spaced
 set expandtab
@@ -188,6 +219,9 @@ let g:Tex_DefaultTargetFormat = "pdf"
 let g:Tex_CompileRule_pdf = "pdflatex -interaction=nonstopmode $*"
 let g:Tex_MultipleCompileFormats = "pdf, aux"
 
+" Rebind vim-latex C-j to jump to <++>
+imap <C-g> <Plug>IMAP_JumpForward
+nmap <C-g> <Plug>IMAP_JumpForward
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -215,8 +249,6 @@ if has('win32')
   map <C-t> :tabnew<CR>
   map <M-left> :tabprev<CR>
   map <M-right> :tabnext<CR>
-  set backspace=2
-  set backspace=indent,eol,start
 endif
 
 if has('mac')
@@ -231,8 +263,10 @@ if has('gui_running')
   colorscheme solarized 
   set guioptions=egmrt
   "set guifont=Source\ Code\ Pro
+  set backspace=2
+  set backspace=indent,eol,start
   set guifont=Consolas:h11
-  
+
   "Remove menubar and toolbar
   set guioptions -=m
   set guioptions -=T
