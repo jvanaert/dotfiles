@@ -227,7 +227,8 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " vim-airline smarter tabline
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'solarized'
 
 " Bash-like autocomplete
 set wildmode=longest,list,full
