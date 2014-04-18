@@ -17,7 +17,6 @@ antigen apply
 
 # Path
 PATHDIRS=(
-#/usr/local/gnat/bin
 /usr/local/bin
 /usr/local
 /usr/bin
@@ -36,7 +35,6 @@ alias rake="noglob rake"
 
 # added RVM stuff
 # # load RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 alias ls='ls -G -p'
 
@@ -70,3 +68,5 @@ alias mvim='mvim --remote-silent'
 alias archey='archey -c'
 
 alias bx='bundle exec'
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

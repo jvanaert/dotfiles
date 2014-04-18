@@ -23,6 +23,7 @@ Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 Bundle 'bling/vim-airline'
 Bundle 'nvie/vim-flake8'
 Bundle 'christoomey/vim-tmux-navigator'
+Bundle 'dart-lang/dart-vim-plugin'
 " Bundle 'AutoComplPop'
 
 " Themes
@@ -116,12 +117,6 @@ nmap <leader>j <C-w><C-j>
 nmap <leader>k <C-w><C-k>
 nmap <leader>l <C-w><C-l>
 
-" Also rebind ctrl-jklh to move windows
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
 " More natural split opening
 set splitbelow
 set splitright
@@ -158,9 +153,11 @@ map L $
 " remap space bar to search, case insensitive
 :nmap <Space> /\c
 
-" Better default behavior with left and right
+" Better default behavior with up and down
 nnoremap j gj
 nnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
 
 " easier quitting
 " save and close all
@@ -227,7 +224,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " vim-airline smarter tabline
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'solarized'
 
 " Bash-like autocomplete
@@ -245,20 +242,6 @@ au BufRead,BufNewFile *.tikz set filetype=tex
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
-" OS specific settings below
-if has('win32')
-  map <C-t> :tabnew<CR>
-  map <M-left> :tabprev<CR>
-  map <M-right> :tabnext<CR>
-endif
-
-if has('mac')
-  let g:Tex_ViewRule_pdf = "open"
-  if has('gui_running')
-    set transparency=1
-  endif
-endif
-
 if has('gui_running')
   set background=light
   colorscheme solarized 
@@ -273,3 +256,17 @@ if has('gui_running')
   set guioptions -=T
 endif
 
+" OS specific settings below
+if has('win32')
+  map <C-t> :tabnew<CR>
+  map <M-left> :tabprev<CR>
+  map <M-right> :tabnext<CR>
+endif
+
+if has('mac')
+  let g:Tex_ViewRule_pdf = "open"
+  if has('gui_running')
+    set transparency=1
+    set guifont=Inconsolata:h13
+  endif
+endif
