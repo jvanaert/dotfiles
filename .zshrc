@@ -16,25 +16,26 @@ antigen theme Fapper/dotfiles .zsh/themes/martin
 antigen apply
 
 # Path
-PATHDIRS=(
-/usr/local/bin
-/usr/local
-/usr/bin
-/usr/sbin
-/sbin
-/usr/local/sbin
-/usr/texbin
-$HOME/.rvm/bin/
-$HOME/bin
-)
+#PATHDIRS=(
+#/usr/local/bin
+#/usr/local
+#/usr/bin
+#/usr/sbin
+#/sbin
+#/usr/local/sbin
+#/usr/texbin
+##$HOME/.rvm/bin/
+#$HOME/bin
+#)
+#path=($path $dir)
 
-path=($path $dir)
+PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
+# Instantiate rbenv with zsh
+eval "$(rbenv init -)"
 
 # Make rake work with zsh
 alias rake="noglob rake"
-
-# added RVM stuff
-# # load RVM
 
 alias ls='ls -G -p'
 
@@ -68,5 +69,3 @@ alias mvim='mvim --remote-silent'
 alias archey='archey -c'
 
 alias bx='bundle exec'
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
