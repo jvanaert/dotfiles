@@ -1,0 +1,71 @@
+#!/bin/sh
+
+# Make sure homebrew-cask
+# is installed
+tap caskroom/cask
+install brew-cask
+
+# Productivity
+cask install alfred
+cask install slate 
+cask install whatpulse
+
+# Utilities
+cask install flux
+cask install bartender
+cask install caffeine
+cask install launchrocket
+cask install asepsis
+cask install the-unarchiver
+
+# Quick Look plugins
+cask install quicklook-csv
+cask install quicklook-json
+cask install qlmarkdown
+cask install qlstephen
+cask install betterzipql
+
+# Apps
+cask install iterm2
+cask install gitx
+cask install google-chrome
+cask install firefox
+cask install dropbox
+cask install ynab
+cask install skim
+cask install dogecoin
+cask install dropbox
+cask install skype
+cask install tunnelblick
+cask install teamviewer
+cask install mactex
+cask install virtualbox
+cask install xtrafinder
+cask install vlc
+cask install spotify
+cask install mumble
+cask install minecraft
+cask install gimp
+cask install evernote
+cask install adobe-reader
+cask install bibdesk
+cask install bitcoin-core
+cask install daisydisk
+cask install handbrake
+cask install inkscape
+cask install kindle
+cask install steam
+cask install torbrowser
+cask install transmission
+cask install unrarx
+
+# Dev
+cask install pgadmin3
+cask install cyberduck
+cask install mysqlworkbench
+cask install wireshark
+cask install sequel-pro
+
+# NAS stuff
+cask install synology-assistant
+cask install synology-cloud-station
