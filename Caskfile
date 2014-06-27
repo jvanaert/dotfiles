@@ -15,6 +15,7 @@ cask install caffeine
 cask install launchrocket
 cask install asepsis
 cask install the-unarchiver
+cask install xquartz
 
 # Quick Look plugins
 cask install quicklook-csv
