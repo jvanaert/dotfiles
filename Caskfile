@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Make sure homebrew-cask
 # is installed
 tap caskroom/cask
@@ -69,3 +67,15 @@ cask install sequel-pro
 # NAS stuff
 cask install synology-assistant
 cask install synology-cloud-station
+
+# Fonts
+tap caskroom/homebrew-fonts
+cask install font-source-code-pro
+cask install font-inconsolata
+cask install font-dejavu-sans
+cask install font-eb-garamond
+cask install font-libre-baskerville
+cask install font-monoone
+cask install font-open-sans
+cask install font-open-sans-condensed
+cask install font-ubuntu
