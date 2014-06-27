@@ -8,22 +8,20 @@ let &runtimepath .= "," . VIMFILES . "/bundle/vundle"
 call vundle#rc(VIMFILES . '/bundle/')
 
 Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-easymotion'
 Bundle 'vim-ruby/vim-ruby'
 " Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-fugitive'
 " Bundle 'cespare/vim-bclose'
 Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 Bundle 'bling/vim-airline'
 Bundle 'nvie/vim-flake8'
+Bundle 'tpope/vim-repeat'
+" Bundle 'tpope/vim-surround'
 Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'dart-lang/dart-vim-plugin'
 " Bundle 'AutoComplPop'
 
 " Themes
@@ -84,6 +82,9 @@ set number
 " Now regexs are Ruby compatible
 nnoremap / /\v
 vnoremap / /\v
+
+" Shift-enter makes end
+imap <S-CR> <CR><CR>end<Esc>-cc
 
 let g:is_posix = 1             " vim's default is archaic bourne shell,
 " bring it up to the 90s
@@ -215,6 +216,7 @@ let g:Tex_IgnoreLevel = 7
 let g:Tex_DefaultTargetFormat = "pdf"
 let g:Tex_CompileRule_pdf = "pdflatex -interaction=nonstopmode $*"
 let g:Tex_MultipleCompileFormats = "pdf, aux"
+let g:Tex_Env_frame = "\\begin{frame}{<++>}\<CR><++>\<CR>\\end{frame}"
 
 " Rebind vim-latex C-j to jump to <++>
 imap <C-g> <Plug>IMAP_JumpForward
