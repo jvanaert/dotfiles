@@ -5,6 +5,11 @@ stuff updated if I make some changes.
 
 Most of these will be personal notes to myself, as a form of reminder.
 
+# Get started
+
+Run the install.sh script to set up the most basic things. Note: I'm still working on this. Probably won't know what to add until I need to use these dotfiles on another machine.
+
+
 ## Remember, you already have
 They are required for config files .vimrc and .zshrc and should be
 loaded automatically due to them being loaded in these files
