@@ -39,5 +39,6 @@ install cmake
 install git
 install gitcola
 install nginx
+install openssh
 install openssl
 install openvpn
