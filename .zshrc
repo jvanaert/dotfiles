@@ -69,3 +69,7 @@ alias mvim='mvim --remote-silent'
 alias archey='archey -c'
 
 alias bx='bundle exec'
+
+alias hist='history  | grep -m 10'
+
+alias top='htop'
