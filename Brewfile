@@ -6,11 +6,12 @@ install tmux
 
 # Utilities
 install zsh
+install zsh-completions
 install harfbuzz
 install wget
 install pow
 install ack
-install imagemagic
+install imagemagick
 install graphviz
 install par
 install gnuplot
@@ -21,7 +22,7 @@ install htop-osx
 install readline
 install reattach-to-user-namespace
 install tuntap
-#install wine
+install wine
 #install winetricks
 
 
@@ -37,7 +38,7 @@ install postgresql
 install sqlite
 install cmake
 install git
-install gitcola
+install git-cola
 install nginx
 install openssh
 install openssl
