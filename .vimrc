@@ -1,32 +1,42 @@
-if has("win32")
-  let VIMFILES="$HOME/vimfiles" 
-else
-  let VIMFILES="$HOME/.vim"
-endif
+"if has("win32")
+"  let VIMFILES="$HOME/vimfiles" 
+"else
+"  let VIMFILES="~/.vim"
+"endif
 
-let &runtimepath .= "," . VIMFILES . "/bundle/vundle"
-call vundle#rc(VIMFILES . '/bundle/')
+"let &runtimepath .= "," . VIMFILES . "/bundle/vundle"
+"call vundle#rc(VIMFILES . '/bundle/')
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-Bundle 'gmarik/vundle'
-Bundle 'vim-ruby/vim-ruby'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/vundle.vim'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'vim-ruby/vim-ruby'
 " Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+"Bundle 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'scrooloose/syntastic' " sntax checker
+Plugin 'tpope/vim-fugitive' " git wrapper
 " Bundle 'cespare/vim-bclose'
-Bundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
-Bundle 'bling/vim-airline'
-Bundle 'nvie/vim-flake8'
-Bundle 'tpope/vim-repeat'
+Plugin 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+Plugin 'bling/vim-airline'
+Plugin 'nvie/vim-flake8' " python syntax checker
+"Bundle 'tpope/vim-repeat'
 " Bundle 'tpope/vim-surround'
-Bundle 'christoomey/vim-tmux-navigator'
+Plugin 'christoomey/vim-tmux-navigator'
 " Bundle 'AutoComplPop'
 
 " Themes
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'nanotech/jellybeans.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'nanotech/jellybeans.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 
 let NERDTreeWinSize=40
@@ -190,6 +200,9 @@ set vb t_vb=                  " disable any beeps or flashes on error
 " autoclose plugin
 let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"', "'": "'", '#{': '}', '|':'|' } 
 let g:AutoCloseProtectedRegions = ["Character"] 
+
+" mustache/handlebars plugin
+let g:mustache_abbreviations = 1
 
 " don't need /g after :s or :g
 set gdefault
