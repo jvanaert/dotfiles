@@ -4,4 +4,4 @@ bind left:cmd;alt        push left  bar-resize:screenSizeX/2
 bind down:cmd;alt        push down  bar-resize:screenSizeY/2
 bind up:cmd;alt          push up    bar-resize:screenSizeY/2
 
-bind tab:cmd switch
+#bind tab:cmd switch
