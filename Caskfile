@@ -58,6 +58,7 @@ cask install torbrowser
 cask install transmission
 cask install unrarx
 cask install rubymine
+cask install unetbootin
 
 # Dev
 cask install pgadmin3
