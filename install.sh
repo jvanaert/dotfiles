@@ -1,5 +1,7 @@
 # Remove .git directory copied over from bootstrap.sh
 rm -rf .git/ 
+rm .gitmodules
+rm .gitignore
 #rt PATH="/usr/local/bin:$PATH"
 
 # make sure system is up-to-date
