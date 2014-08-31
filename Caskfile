@@ -3,6 +3,7 @@
 tap caskroom/cask
 install brew-cask
 
+
 # Productivity
 cask install alfred
 cask install slate 
@@ -59,6 +60,8 @@ cask install transmission
 cask install unrarx
 cask install rubymine
 cask install unetbootin
+cask install macvim
+cask install onepassword
 
 # Dev
 cask install pgadmin3
@@ -82,3 +85,9 @@ cask install font-monoone
 cask install font-open-sans
 cask install font-open-sans-condensed
 cask install font-ubuntu
+
+# Link with alfred
+cask alfred link
+
+# Cleanup
+cask cleanup
