@@ -1,9 +1,3 @@
-"if has("win32")
-"  let VIMFILES="$HOME/vimfiles" 
-"else
-"  let VIMFILES="~/.vim"
-"endif
-
 "let &runtimepath .= "," . VIMFILES . "/bundle/vundle"
 "call vundle#rc(VIMFILES . '/bundle/')
 set nocompatible              " be iMproved, required
@@ -257,15 +251,11 @@ au BufRead,BufNewFile *.tikz set filetype=tex
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
-if has('gui_running')
-  set background=light
-  colorscheme solarized 
-  set guioptions=egmrt
-  "set guifont=Source\ Code\ Pro
-  set backspace=2
-  set backspace=indent,eol,start
-  set guifont=Consolas:h11
+set background=light
+colorscheme solarized 
 
+if has('gui_running')
+  set guioptions=egmrt
   "Remove menubar and toolbar
   set guioptions -=m
   set guioptions -=T
@@ -276,6 +266,12 @@ if has('win32')
   map <C-t> :tabnew<CR>
   map <M-left> :tabprev<CR>
   map <M-right> :tabnext<CR>
+
+  if has('gui_running)
+    set backspace=indent,eol,start
+    set guifont=Consolas:h11
+    set backspace=2
+  endif
 endif
 
 if has('mac')
