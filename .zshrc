@@ -1,4 +1,4 @@
-source $HOME/submodules/antigen/antigen.zsh
+source $HOME/.zsh-antigen/antigen/antigen.zsh
 
 # Antigen modules
 antigen use oh-my-zsh
