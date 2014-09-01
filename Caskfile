@@ -63,6 +63,7 @@ cask install rubymine
 cask install unetbootin
 cask install macvim
 cask install onepassword
+cask install github
 
 # Dev
 cask install pgadmin3
