@@ -3,7 +3,6 @@
 tap caskroom/cask
 install brew-cask
 
-
 # Productivity
 cask install alfred
 cask install slate 
@@ -24,6 +23,8 @@ cask install quicklook-json
 cask install qlmarkdown
 cask install qlstephen
 cask install betterzipql
+
+cask install java
 
 # Apps
 cask install iterm2
