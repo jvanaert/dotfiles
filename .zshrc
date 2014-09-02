@@ -3,7 +3,7 @@ export PATH="$HOME/bin:$PATH"
 
 # Load dotfiles
 for file in ~/.{exports,aliases,extra}; do
-  [-r "$file"] && [ -f "$file" ] && source "$file";
+  [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
 
@@ -14,9 +14,6 @@ source $HOME/.zsh-antigen/antigen/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle git
 antigen bundle osx
-# antigen bundle ruby
-# antigen bundle rvm
-# antigen bundle textmate
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 # Antigen theme
