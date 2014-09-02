@@ -34,5 +34,5 @@ gem install --no-ri --no-rdoc bundler
 chsh -s /bin/zsh
 
 # Delete myself
-echo 'All done installing Martin's dotfiles.'
+echo "All done installing Martin's dotfiles."
 rm -- "$0"
