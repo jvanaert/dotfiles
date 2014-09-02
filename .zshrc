@@ -7,6 +7,10 @@ for file in ~/.{exports,aliases,extra}; do
 done;
 unset file;
 
+# Enable tab completion for `g` by marking it as an alias for `git`
+if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+  thencomplete -o default -o nospace -F _git g;
+ fi;
 
 source $HOME/.zsh-antigen/antigen/antigen.zsh
 
