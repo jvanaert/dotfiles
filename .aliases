@@ -11,6 +11,7 @@ alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias h="history"
 alias g="git"
+alias gs="git status -s"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
