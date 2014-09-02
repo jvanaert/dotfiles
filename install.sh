@@ -12,9 +12,11 @@ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
 
 # Install homebrew apps
 brew bundle Brewfile
+rm Brewfile
 
 # Install homebrew-cask apps
 brew bundle Caskfile
+rm Caskfile
 
 # Install vundle plugins
 vim +PluginInstall +qall
