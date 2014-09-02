@@ -2,7 +2,6 @@
 rm -rf .git/ 
 rm .gitmodules
 rm .gitignore
-#rt PATH="/usr/local/bin:$PATH"
 
 # make sure system is up-to-date
 sudo softwareupdate --install --all
@@ -34,4 +33,5 @@ gem install --no-ri --no-rdoc bundler
 chsh -s /bin/zsh
 
 # Delete myself
+echo 'All done installing Martin's dotfiles.'
 rm -- "$0"
