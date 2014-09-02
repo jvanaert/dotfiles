@@ -1,3 +1,4 @@
+cd ~
 # Remove .git directory copied over from bootstrap.sh
 rm -rf .git/ 
 rm .gitmodules
