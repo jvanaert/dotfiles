@@ -64,6 +64,7 @@ cask install unetbootin
 cask install macvim
 cask install onepassword
 cask install github
+cask install speedcrunch
 
 # Dev
 cask install pgadmin3
