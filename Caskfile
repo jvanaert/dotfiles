@@ -25,6 +25,7 @@ cask install qlstephen
 cask install betterzipql
 
 cask install java
+cask install flash-player
 
 # Apps
 cask install iterm2
