@@ -29,8 +29,9 @@ rbenv install 2.1.2
 rbenv global 2.1.2
 rbenv rehash
 
-# Install Ruby bundler gem 
+# Install gems
 gem install --no-ri --no-rdoc bundler 
+gem install --no-ri --no-rdoc lunchy
 
 # Set shell to zsh
 chsh -s /bin/zsh
