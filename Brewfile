@@ -12,7 +12,6 @@ install findutils
 # Install GNU `sed`, overwriting the built-in `sed`
 install gnu-sed --default-names
 
-
 # More recent versions of OS X tools
 install vim --override-system-vi
 install homebrew/dupes/grep
@@ -63,5 +62,6 @@ install nginx
 install openssh
 install openssl
 install openvpn
+install heroku-toolbelt
 
 cleanup
