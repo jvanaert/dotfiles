@@ -23,6 +23,8 @@ vim +PluginInstall +qall
 
 # Setup Python env
 pip install livestreamer
+pip install flake8
+pip install pygments
 
 # Setup Ruby env
 rbenv install 2.1.2
