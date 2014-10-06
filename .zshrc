@@ -2,7 +2,7 @@
 export PATH="$HOME/bin:$PATH"
 
 # Add sbin to path
-export PATH='/usr/local/sbin:$PATH'
+export PATH="/usr/local/sbin:$PATH"
 
 # Load dotfiles
 for file in ~/.{exports,aliases,extra}; do
@@ -45,3 +45,6 @@ antigen apply
 
 # Instantiate rbenv with zsh
 eval "$(rbenv init -)"
+
+# Instantiate pyenv with zsh
+eval "$(pyenv init -)"
