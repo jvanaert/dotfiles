@@ -280,4 +280,8 @@ if has('mac')
     set transparency=1
     set guifont=Inconsolata:h13
   endif
+
+  " Make yanking work
+  " http://vim.wikia.com/wiki/Mac%5FOS%5FX%5Fclipboard%5Fsharing
+  set clipboard=unnamed
 endif
