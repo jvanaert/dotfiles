@@ -240,6 +240,9 @@ let g:airline_theme = 'solarized'
 set wildmode=longest,list,full
 set wildmenu
 
+" Fix backspace and delete problems
+set backspace=indent,eol,start
+
 " Turn on syntax highlighting
 syntax on
 
@@ -268,7 +271,6 @@ if has('win32')
   map <M-right> :tabnext<CR>
 
   if has('gui_running)
-    set backspace=indent,eol,start
     set guifont=Consolas:h11
     set backspace=2
   endif
