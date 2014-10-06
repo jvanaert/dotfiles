@@ -48,6 +48,7 @@ install wine
 install python
 install python3
 install rbenv
+install pyenv
 install ruby-build
 install gcc
 install ghc
