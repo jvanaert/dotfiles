@@ -48,3 +48,7 @@ eval "$(rbenv init -)"
 
 # Instantiate pyenv with zsh
 eval "$(pyenv init -)"
+
+# Set locale info
+export LC_ALL=da_DK.UTF-8  
+export LANG=da_DK.UTF-8
