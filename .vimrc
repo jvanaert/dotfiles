@@ -11,7 +11,7 @@ Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'vim-ruby/vim-ruby'
 " Bundle 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
-"Bundle 'kien/ctrlp.vim'
+Bundle 'kien/ctrlp.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/syntastic' " sntax checker
 Plugin 'tpope/vim-fugitive' " git wrapper
@@ -23,6 +23,7 @@ Plugin 'nvie/vim-flake8' " python syntax checker
 " Bundle 'tpope/vim-surround'
 Plugin 'christoomey/vim-tmux-navigator'
 " Bundle 'AutoComplPop'
+Plugin 'rizzatti/dash.vim'
 
 " Themes
 Plugin 'altercation/vim-colors-solarized'
@@ -37,7 +38,7 @@ let NERDTreeWinSize=40
 
 " To fix vim running ruby
 " See https://stackoverflow.com/questions/20238739/ruby-segmentation-fault-under-vim
-set shell=/bin/sh
+set shell=zsh\ -i
 
 autocmd VimEnter * wincmd l
 
@@ -108,7 +109,7 @@ nmap <leader>d :bd<CR>
 """"""""""""""""""""""""""
 " Autocompletion
 """"""""""""""""""""""""""
-imap <Tab> <C-P>
+" imap <Tab> <C-P>
 set complete=.,b,u,]
 set omnifunc=syntaxcomplete#Complete
 
@@ -231,6 +232,7 @@ nmap <C-g> <Plug>IMAP_JumpForward
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+nnoremap <leader>. :CtrlPTag<cr>
 
 " vim-airline smarter tabline
 " let g:airline#extensions#tabline#enabled = 1
@@ -239,6 +241,7 @@ let g:airline_theme = 'solarized'
 " Bash-like autocomplete
 set wildmode=longest,list,full
 set wildmenu
+
 
 " Fix backspace and delete problems
 set backspace=indent,eol,start
@@ -270,7 +273,7 @@ if has('win32')
   map <M-left> :tabprev<CR>
   map <M-right> :tabnext<CR>
 
-  if has('gui_running)
+  if has('gui_running')
     set guifont=Consolas:h11
     set backspace=2
   endif
