@@ -5,7 +5,11 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+alias drop="cd ~/Documents/Dropbox"
+alias ucsd="cd ~/Documents/Dropbox/UCSD"
+alias 123="cd ~/Documents/Dropbox/UCSD/CSE-123-computer-networks"
+alias 127="cd ~/Documents/Dropbox/UCSD/CSE-127-network-security"
+alias 250a="cd ~/Documents/Dropbox/UCSD/CSE-250a-principles-ai"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
@@ -57,11 +61,11 @@ command -v md5sum > /dev/null || alias md5sum="md5"
 # OS X has no `sha1sum`, so use `shasum` as a fallback
 command -v sha1sum > /dev/null || alias sha1sum="shasum"
 
-# Get shasum 256
-alias sha256="shasum -a 256"
-
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
+
+# Get shasum 256
+alias sha256="shasum -a 256"
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
@@ -101,3 +105,8 @@ alias bx='bundle exec'
 alias hist='history  | grep -m 10'
 
 alias top='htop'
+
+pygmentizeHTML() {
+  pygmentize -O full -f html $1 > "$1".html
+}
+alias pygmentizeHTML=pygmentizeHTML
