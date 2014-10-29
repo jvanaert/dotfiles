@@ -38,7 +38,7 @@ let NERDTreeWinSize=40
 
 " To fix vim running ruby
 " See https://stackoverflow.com/questions/20238739/ruby-segmentation-fault-under-vim
-set shell=zsh\ -i
+set shell=zsh
 
 autocmd VimEnter * wincmd l
 
