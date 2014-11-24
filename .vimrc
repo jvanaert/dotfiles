@@ -6,6 +6,11 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+if has('nvim')
+  runtime! plugin/python_setup.vim
+  set unnamedclip
+endif
+
 Plugin 'gmarik/Vundle.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'vim-ruby/vim-ruby'
@@ -259,6 +264,16 @@ au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
 set background=light
 colorscheme solarized 
+
+" Vim pane resizing via mouse in tmux
+" src: http://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
+set mouse+=a
+if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=xterm2
+endif
+
+
 
 if has('gui_running')
   set guioptions=egmrt
