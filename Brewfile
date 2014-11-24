@@ -20,6 +20,7 @@ install homebrew/dupes/screen
 # Apps
 install archey
 install tmux
+install openemu
 
 # Utilities
 install zsh --disable-etcdir
