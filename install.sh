@@ -38,6 +38,16 @@ gem install --no-ri --no-rdoc lunchy
 # Set shell to zsh
 chsh -s /bin/zsh
 
-# Delete myself
+# Set up tmux plugin manager (TPM)
+# start a server but don't attach to it
+tmux start-server
+# create a new session but don't attach to it either
+tmux new-session -d
+# install the plugins
+~/.tmux/plugins/tpm/scripts/install_plugins.sh
+# killing the server is not required
+tmux kill-server
+
+# Finally, delete myself
 echo "All done installing Martin's dotfiles."
 rm -- "$0"
