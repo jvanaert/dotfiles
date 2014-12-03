@@ -19,30 +19,32 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   # Install homebrew-cask apps
   brew bundle Caskfile
   rm Caskfile
+
+  # Install pip
+  wget https://bootstrap.pypa.io/get-pip.py
+  python get-pip.py
+
+  # Setup Python env
+  pip install livestreamer
+  pip install flake8
+  pip install pygments
+
+  # Setup Ruby env
+  rbenv install 2.1.2
+  rbenv global 2.1.2
+  rbenv rehash
+
+  # Install gems
+  gem install --no-ri --no-rdoc bundler 
+  gem install --no-ri --no-rdoc lunchy
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # Linux
+  # need rbenv, ruby-build, pyenv
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then # Windows
+  # need rbenv, ruby-build, pyenv
 fi
 
 # Install vundle plugins
 vim +PluginInstall +qall
-
-# Install pip
-wget https://bootstrap.pypa.io/get-pip.py
-python get-pip.py
-
-# Setup Python env
-pip install livestreamer
-pip install flake8
-pip install pygments
-
-# Setup Ruby env
-rbenv install 2.1.2
-rbenv global 2.1.2
-rbenv rehash
-
-# Install gems
-gem install --no-ri --no-rdoc bundler 
-gem install --no-ri --no-rdoc lunchy
 
 # Set shell to zsh
 chsh -s /bin/zsh
