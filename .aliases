@@ -110,3 +110,13 @@ pygmentizeHTML() {
   pygmentize -O full -f html $1 > "$1".html
 }
 alias pygmentizeHTML=pygmentizeHTML
+
+tarFolder() {
+  tar -zcvf $1.tar.gz "$1"
+}
+alias tarFolder=tarFolder
+
+
+alias VBox127='VBoxHeadless --startvm "CSE 127 HW5" --vrde off'
+alias VBox123p2='VBoxHeadless --startvm "CSE 123 P2" --vrde off'
+
