@@ -247,7 +247,6 @@ let g:airline_theme = 'solarized'
 set wildmode=longest,list,full
 set wildmenu
 
-
 " Fix backspace and delete problems
 set backspace=indent,eol,start
 
@@ -262,8 +261,14 @@ au BufRead,BufNewFile *.tikz set filetype=tex
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
-set background=light
-colorscheme solarized 
+" let hour = strftime("%H")
+" if 6 <= hour && hour < 18
+"   set background=light
+" else
+set background=dark
+" endif
+
+colorscheme solarized
 
 " Vim pane resizing via mouse in tmux
 " src: http://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
