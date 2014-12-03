@@ -4,22 +4,31 @@ rm -rf .git/
 rm .gitmodules
 rm .gitignore
 
-# make sure system is up-to-date
-sudo softwareupdate --install --all
+# OS-specific installation
+if [ "$(uname)" == "Darwin" ]; then # OS X
+  # make sure system is up-to-date
+  sudo softwareupdate --install --all
 
-# install homebrew
-ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
+  # install homebrew
+  ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
 
-# Install homebrew apps
-brew bundle Brewfile
-rm Brewfile
+  # Install homebrew apps
+  brew bundle Brewfile
+  rm Brewfile
 
-# Install homebrew-cask apps
-brew bundle Caskfile
-rm Caskfile
+  # Install homebrew-cask apps
+  brew bundle Caskfile
+  rm Caskfile
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # Linux
+elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then # Windows
+fi
 
 # Install vundle plugins
 vim +PluginInstall +qall
+
+# Install pip
+wget https://bootstrap.pypa.io/get-pip.py
+python get-pip.py
 
 # Setup Python env
 pip install livestreamer
