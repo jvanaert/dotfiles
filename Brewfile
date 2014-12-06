@@ -1,5 +1,4 @@
 update
-
 upgrade
 
 # Install GNU core utilities (those that come with OS X are outdated)
@@ -16,6 +15,10 @@ install gnu-sed --default-names
 install vim --override-system-vi
 install homebrew/dupes/grep
 install homebrew/dupes/screen
+
+# Install Neovim
+tap neovim/homebrew-neovim
+brew install --HEAD neovim
 
 # Apps
 install archey
