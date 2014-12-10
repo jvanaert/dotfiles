@@ -39,6 +39,7 @@ install gnuplot
 install tree
 install htop-osx
 install nmap
+install hub
 
 # Fixes
 install readline
