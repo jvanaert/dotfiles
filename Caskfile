@@ -5,7 +5,7 @@ install brew-cask
 
 # Productivity
 cask install alfred
-cask install slate 
+cask install spectacle
 cask install whatpulse
 
 # Utilities
