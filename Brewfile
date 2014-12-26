@@ -56,7 +56,7 @@ install rbenv
 install pyenv
 install ruby-build
 install gcc
-install ghc
+install ghc cabal-install
 install node
 install sqlmap
 install postgresql
