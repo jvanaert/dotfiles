@@ -29,15 +29,16 @@ Plugin 'nvie/vim-flake8' " python syntax checker
 Plugin 'christoomey/vim-tmux-navigator'
 " Bundle 'AutoComplPop'
 Plugin 'rizzatti/dash.vim'
+Plugin 'Shougo/neocomplete.vim'
 
 " Themes
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'tomasr/molokai'
 call vundle#end()
 
 filetype plugin indent on
 
-let NERDTreeWinSize=40
 
 " To fix vim running ruby
 " See https://stackoverflow.com/questions/20238739/ruby-segmentation-fault-under-vim
@@ -106,6 +107,72 @@ nmap <leader>d :bd<CR>
 " imap <Tab> <C-P>
 set complete=.,b,u,]
 set omnifunc=syntaxcomplete#Complete
+
+""""""""""""""""""""""""""
+" Neocomplete
+""""""""""""""""""""""""""
+
+let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
+let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
+let g:neocomplete#enable_smart_case = 1 " Use smartcase.
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+      \ 'default' : '',
+      \ 'vimshell' : $HOME.'/.vimshell_hist',
+      \ 'scheme' : $HOME.'/.gosh_completions'
+      \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+endfunction
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+""""""""""""""""""""""""""
+" NERDTree
+""""""""""""""""""""""""""
+
+let NERDTreeWinSize=40
+
+""""""""""""""""""""""""""
+" Unorganized  stuff
+""""""""""""""""""""""""""
 
 " Leader-<movement> for moving around in windows
 nmap <leader>h <C-w><C-h>
@@ -215,9 +282,6 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 nnoremap <leader>. :CtrlPTag<cr>
 
-" vim-airline smarter tabline
-" let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'solarized'
 
 " Bash-like autocomplete
 set wildmode=longest,list,full
@@ -236,9 +300,10 @@ au BufRead,BufNewFile *.tikz set filetype=tex
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
-" Colocrscheme stuff 
-colorscheme solarized
+" Colorscheme stuff 
+colorscheme molokai
 set background=dark
+let g:airline_theme = 'solarized'
 
 " Vim pane resizing via mouse in tmux
 " src: http://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux

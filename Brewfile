@@ -18,7 +18,9 @@ install homebrew/dupes/screen
 
 # Install Neovim
 tap neovim/homebrew-neovim
-brew install --HEAD neovim
+install --HEAD neovim
+
+install macvim --with-lua --with-python3 --override-system-vim --HEAD
 
 # Apps
 install archey

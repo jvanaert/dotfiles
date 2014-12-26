@@ -63,7 +63,6 @@ cask install transmission
 cask install unrarx
 cask install rubymine
 cask install unetbootin
-cask install macvim
 cask install onepassword
 cask install github
 cask install speedcrunch
