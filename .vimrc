@@ -12,12 +12,12 @@ if has('nvim')
 endif
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'vim-ruby/vim-ruby'
+" Plugin 'mustache/vim-mustache-handlebars'
+" Plugin 'vim-ruby/vim-ruby'
 " Bundle 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
+" Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/syntastic' " sntax checker
 Plugin 'tpope/vim-fugitive' " git wrapper
 " Bundle 'cespare/vim-bclose'
@@ -29,7 +29,6 @@ Plugin 'nvie/vim-flake8' " python syntax checker
 Plugin 'christoomey/vim-tmux-navigator'
 " Bundle 'AutoComplPop'
 Plugin 'rizzatti/dash.vim'
-Plugin 'Shougo/neocomplete.vim'
 
 " Themes
 Plugin 'altercation/vim-colors-solarized'
