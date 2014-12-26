@@ -116,7 +116,5 @@ tarFolder() {
 }
 alias tarFolder=tarFolder
 
-
-alias VBox127='VBoxHeadless --startvm "CSE 127 HW5" --vrde off'
-alias VBox123p2='VBoxHeadless --startvm "CSE 123 P2" --vrde off'
+alias steam-wine='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe >/dev/null 2>&1 &'
 
