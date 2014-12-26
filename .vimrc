@@ -29,15 +29,14 @@ Plugin 'nvie/vim-flake8' " python syntax checker
 Plugin 'christoomey/vim-tmux-navigator'
 " Bundle 'AutoComplPop'
 Plugin 'rizzatti/dash.vim'
+Plugin 'Shougo/neocomplete.vim'
 
 " Themes
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'nanotech/jellybeans.vim'
+call vundle#end()
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-
+filetype plugin indent on
 
 let NERDTreeWinSize=40
 
@@ -79,36 +78,27 @@ set foldmethod=marker         " Fold on the marker
 set foldlevel=100             " Don't autofold anything (but I can still fold manually)
 
 "http://vimcasts.org/episodes/formatting-text-with-par/
-set formatprg=par
+" set formatprg=par
 
 " http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
 autocmd BufEnter * silent! lcd %:p:h
 
-set hidden
-set relativenumber
 set number
 
-" fix regexes default regex handling by auto-inserting \v before every REGEX.
-" Now regexs are Ruby compatible
+" fix regexes default regex handling by
+" auto-inserting \v before every REGEX.
 nnoremap / /\v
 vnoremap / /\v
 
-" Shift-enter makes end
-imap <S-CR> <CR><CR>end<Esc>-cc
-
-let g:is_posix = 1             " vim's default is archaic bourne shell,
-" bring it up to the 90s
+let g:is_posix = 1
 let mapleader = ","
 
-set fo+=o                      " Automatically insert the current comment
-" leader after hitting 'o' or 'O' in Normal mode.
-set fo-=r                      " Do not automatically insert a comment
-" leader after an enter
-set fo-=t                      " Do no auto-wrap text using textwidth (does
-" not apply to comments)
+set fo+=o  " Automatically insert the current comment
+           " leader after hitting 'o' or 'O' in Normal mode.
+set fo-=r  " Do not automatically insert a comment leader after an enter
+set fo-=t  " Do no auto-wrap text using textwidth (does not
+           " apply to comments)
 
-" Switch between buffers noremap <tab> <C-w><C-w>
-" :bd deletes the current buffer (all windows of)
 nmap <leader>d :bd<CR>
 
 """"""""""""""""""""""""""
@@ -117,10 +107,6 @@ nmap <leader>d :bd<CR>
 " imap <Tab> <C-P>
 set complete=.,b,u,]
 set omnifunc=syntaxcomplete#Complete
-
-""""""""""""""""""""""""""
-" Windows
-""""""""""""""""""""""""""
 
 " Leader-<movement> for moving around in windows
 nmap <leader>h <C-w><C-h>
@@ -132,17 +118,12 @@ nmap <leader>l <C-w><C-l>
 set splitbelow
 set splitright
 
-""""""""""""""""""""""""""
-
 " Moving between tabs
 nmap <leader>n :tabnext
 nmap <leader>N :tabprev
 
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
-
-" Remap alt-i to meta-i
-set <m-i>=^[i
 
 " get rid of annoying backup behaviour
 set nobackup
@@ -151,11 +132,10 @@ set directory=/tmp//           " prepend(^=) $HOME/.tmp/ to default path; use fu
 set noswapfile
 
 " ,a to Ack
-nnoremap <leader>a :Ack 
-
+" nnoremap <leader>a :Ack 
 " Rotating among results in an ack search
-map <C-n> :cn<CR>
-map <C-p> :cp<CR>
+" map <C-n> :cn<CR>
+" map <C-p> :cp<CR>
 
 " ease of use keyboard mappings (why do I care about top/bottom of screen?)
 map H ^
@@ -190,41 +170,38 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 
-set mouse=a                   " Enable mouse in GUI mode
-set mousehide                 " Hide mouse after chars typed
+set mousehide       " Hide mouse after chars typed
 
-set novisualbell              " No blinking
-set noerrorbells              " No noise.
-set vb t_vb=                  " disable any beeps or flashes on error
+set novisualbell    " No blinking
+set noerrorbells    " No noise
+set vb t_vb=        " disable any beeps or flashes on error
 
 " autoclose plugin
 let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"', "'": "'", '#{': '}', '|':'|' } 
 let g:AutoCloseProtectedRegions = ["Character"] 
 
-" mustache/handlebars plugin
-let g:mustache_abbreviations = 1
-
 " don't need /g after :s or :g
 set gdefault
 
-" OPTIONAL: This enables automatic indentation as you type.
-filetype indent plugin on
+" Indent soft wraps
+set breakindent
+" set showbreak=\ \
+set showbreak=\  
+set columns=86
 
 " For vim-latex grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
 
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" The following changes the default filetype back to 'tex':
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to 'plaintex' instead of 'tex', which results in vim-latex not being loaded. The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
 
-let g:Tex_IgnoredWarnings =
-      \"Unused global option(s):\n".
-      \"Underfull\n".
-      \"Overfull\n".
-      \"float specifier changed to\n"
+" let g:Tex_IgnoredWarnings =
+"       \"Unused global option(s):\n".
+"       \"Underfull\n".
+"       \"Overfull\n".
+"       \"float specifier changed to\n"
 let g:Tex_IgnoreLevel = 7
 let g:Tex_DefaultTargetFormat = "pdf"
 let g:Tex_CompileRule_pdf = "pdflatex -interaction=nonstopmode $*"
@@ -254,34 +231,26 @@ set backspace=indent,eol,start
 syntax on
 
 " Syntax highlighting of different languages
-au BufRead,BufNewFile *.mod set filetype=ampl 
 au BufRead,BufNewFile *.tikz set filetype=tex
 
 " 4 indents in python files only
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
-" let hour = strftime("%H")
-" if 6 <= hour && hour < 18
-"   set background=light
-" else
-set background=dark
-" endif
-
+" Colocrscheme stuff 
 colorscheme solarized
+set background=dark
 
 " Vim pane resizing via mouse in tmux
 " src: http://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
 set mouse+=a
 if &term =~ '^screen'
-    " tmux knows the extended mouse mode
-    set ttymouse=xterm2
+    set ttymouse=xterm2 " tmux knows the extended mouse mode
 endif
-
-
 
 if has('gui_running')
   set guioptions=egmrt
+
   "Remove menubar and toolbar
   set guioptions -=m
   set guioptions -=T
