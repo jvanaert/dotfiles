@@ -55,7 +55,6 @@ cask install bibdesk
 cask install daisydisk
 cask install handbrake
 cask install inkscape
-cask install kindle
 cask install steam
 cask install origin
 cask install torbrowser
