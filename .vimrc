@@ -12,24 +12,38 @@ if has('nvim')
 endif
 
 Plugin 'gmarik/Vundle.vim'
-" Plugin 'mustache/vim-mustache-handlebars'
-" Plugin 'vim-ruby/vim-ruby'
-" Bundle 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 " Plugin 'mileszs/ack.vim'
-Plugin 'scrooloose/syntastic' " sntax checker
+Plugin 'scrooloose/syntastic' " syntax checker
 Plugin 'tpope/vim-fugitive' " git wrapper
 " Bundle 'cespare/vim-bclose'
 Plugin 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 Plugin 'bling/vim-airline'
-Plugin 'nvie/vim-flake8' " python syntax checker
 "Bundle 'tpope/vim-repeat'
 " Bundle 'tpope/vim-surround'
 Plugin 'christoomey/vim-tmux-navigator'
-" Bundle 'AutoComplPop'
-Plugin 'rizzatti/dash.vim'
+" Plugin 'AutoComplPop' "autocompletion
+Plugin 'rizzatti/dash.vim' " autocompletion
 Plugin 'Shougo/neocomplete.vim'
+Plugin 'jpalardy/vim-slime'
+Plugin 'majutsushi/tagbar'
+Plugin 'bitc/vim-hdevtools'
+
+" Haskell dev
+Plugin 'eagletmt/neco-ghc'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'Twinside/vim-hoogle'
+Plugin 'raichoo/haskell-vim'
+Plugin 'Shougo/vimproc.vim'
+
+" Ruby dev (uncommented due to RubyMine (ugh, I know))
+" Plugin 'mustache/vim-mustache-handlebars'
+" Plugin 'vim-ruby/vim-ruby'
+" Bundle 'scrooloose/nerdcommenter'
+
+" Python dev
+Plugin 'nvie/vim-flake8' " python syntax checker
 
 " Themes
 Plugin 'altercation/vim-colors-solarized'
@@ -105,8 +119,8 @@ nmap <leader>d :bd<CR>
 " Autocompletion
 """"""""""""""""""""""""""
 " imap <Tab> <C-P>
-set complete=.,b,u,]
-set omnifunc=syntaxcomplete#Complete
+" set complete=.,b,u,]
+" set omnifunc=syntaxcomplete#Complete
 
 """"""""""""""""""""""""""
 " Neocomplete
@@ -132,6 +146,11 @@ if !exists('g:neocomplete#keyword_patterns')
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
@@ -152,17 +171,55 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
+" au BufRead,BufNewFile *.hs,*lhs set filetype=haskell
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
+
+""""""""""""""""""""""""""
+" Tagbar
+""""""""""""""""""""""""""
+
+" nmap <leader>= :TagbarToggle<CR>
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+
+""""""""""""""""""""""""""
+" vim-slime
+""""""""""""""""""""""""""
+
+let g:slime_target = "tmux"
+let g:slime_paste_file = tempname()
+
+""""""""""""""""""""""""""
+" Syntastic
+""""""""""""""""""""""""""
+
+" Toggle between active and passive type checking
+map <silent> <Leader>e :Errors<CR>
+map <Leader>s :SyntasticToggleMode<CR> 
+let g:syntastic_python_checkers=['flake8'] " use flake8
+
+""""""""""""""""""""""""""
+" ghc-mod (not a vim plugin)
+""""""""""""""""""""""""""
+
+" Reload
+map <silent> tu :call GHC_BrowseAll()<CR>
+" Type Lookup
+map <silent> tw :call GHC_ShowType(1)<CR>
+
+" show type of function under curser when f1
+au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR> 
+au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
+" show further information type classes, data constructors or
+" functions, including the source location of definition
+au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
 
 """"""""""""""""""""""""""
 " NERDTree
@@ -188,8 +245,6 @@ set splitright
 nmap <leader>n :tabnext
 nmap <leader>N :tabprev
 
-" Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
 
 " get rid of annoying backup behaviour
 set nobackup
@@ -225,9 +280,12 @@ nmap <leader><Esc> :q!<CR>
 imap <C-BS> <C-W>
 
 " Spell checking
-"set spell
-set spelllang=en_us,da
-autocmd BufNewFile,BufRead *.tex set spell
+" set spell
+" set spelllang=en_us ",da
+" autocmd BufNewFile,BufRead *.tex set spell
+
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
 
 " Indent with 2 spaced
 set expandtab
@@ -262,15 +320,10 @@ set grepprg=grep\ -nH\ $*
 
 " OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to 'plaintex' instead of 'tex', which results in vim-latex not being loaded. The following changes the default filetype back to 'tex':
 let g:tex_flavor='latex'
-
-" let g:Tex_IgnoredWarnings =
-"       \"Unused global option(s):\n".
-"       \"Underfull\n".
-"       \"Overfull\n".
-"       \"float specifier changed to\n"
 let g:Tex_IgnoreLevel = 7
+let g:Tex_SmartKeyDot=0 " do not convert ... to \ldots
 let g:Tex_DefaultTargetFormat = "pdf"
-let g:Tex_CompileRule_pdf = "pdflatex -interaction=nonstopmode $*"
+let g:Tex_CompileRule_pdf = "pdflatex -synctex=1 -shell-escape -interaction=nonstopmode $*"
 let g:Tex_MultipleCompileFormats = "pdf, aux"
 let g:Tex_Env_frame = "\\begin{frame}{<++>}\<CR><++>\<CR>\\end{frame}"
 
@@ -301,7 +354,7 @@ autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 
 " Colorscheme stuff 
-colorscheme molokai
+colorscheme solarized
 set background=dark
 let g:airline_theme = 'solarized'
 
@@ -333,7 +386,7 @@ if has('win32')
 endif
 
 if has('mac')
-  let g:Tex_ViewRule_pdf = "open"
+  let g:Tex_ViewRule_pdf = "open -a Skim"
   if has('gui_running')
     set transparency=1
     set guifont=Inconsolata:h13
