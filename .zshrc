@@ -21,8 +21,6 @@ antigen bundle gem
 antigen bundle rbenv
 antigen bundle rsync
 antigen bundle tmux
-antigen bundle zsh-users/zsh-syntax-highlighting/usr/bin/src-hilite-lesspipe.sh
-antigen bundle tarruda/zsh-autosuggestions
 
 # Antigen theme
 antigen theme Fapper/dotfiles /.zsh/themes/martin
