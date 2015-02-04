@@ -29,7 +29,6 @@ install openemu
 
 # Utilities
 install zsh --disable-etcdir
-install zsh-completions
 install harfbuzz
 install wget --enable-iri
 install pow
