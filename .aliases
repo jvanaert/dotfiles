@@ -7,9 +7,9 @@ alias .....="cd ../../../.."
 # Shortcuts
 alias drop="cd ~/Documents/Dropbox"
 alias ucsd="cd ~/Documents/Dropbox/UCSD"
-alias 123="cd ~/Documents/Dropbox/UCSD/CSE-123-computer-networks"
-alias 127="cd ~/Documents/Dropbox/UCSD/CSE-127-network-security"
-alias 250a="cd ~/Documents/Dropbox/UCSD/CSE-250a-principles-ai"
+alias 230="cd ~/Documents/Dropbox/UCSD/CSE-230"
+alias 232="cd ~/Documents/Dropbox/UCSD/CSE-232"
+alias 190="cd ~/Documents/Dropbox/UCSD/CSE-190"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
@@ -17,34 +17,14 @@ alias h="history"
 alias g="git"
 alias gs="git status -s"
 
-# Detect which `ls` flavor is in use
-if ls --color > /dev/null 2>&1; then # GNU `ls`
-  lscolorflag="--color"
-else # OS X `ls`
-  lscolorflag="-G"
-fi
-
-# List all files colorized in long format
-alias l="ls -lF ${colorflag}"
-
-# List all files colorized in long format, including dot files
-alias la="ls -laF ${colorflag}"
-
-# List only directories
-alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
-
-# Always use color output for `ls`
-alias ls="command ls ${colorflag}"
-export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
+#alias ls='/usr/local/Cellar/coreutils/8.23_1/bin/gls -G'
+#alias ls='gls --color=auto --group-directories-first'
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
 # Get week number
 alias week='date +%V'
-
-# Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; gem update --system; gem update'
 
 # IP addresses
 alias whatismyip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -95,8 +75,6 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Make rake work with zsh
 alias rake="noglob rake"
 
-alias ls='ls -G -p'
-
 alias mvim='mvim --remote-silent'
 alias archey='archey -c'
 
@@ -105,6 +83,8 @@ alias bx='bundle exec'
 alias hist='history  | grep -m 10'
 
 alias top='htop'
+
+alias vim='nvim'
 
 pygmentizeHTML() {
   pygmentize -O full -f html $1 > "$1".html
@@ -116,5 +96,5 @@ tarFolder() {
 }
 alias tarFolder=tarFolder
 
-alias steam-wine='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe >/dev/null 2>&1 &'
+alias steam-wine='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe -no-dwrite >/dev/null 2>&1 &'
 

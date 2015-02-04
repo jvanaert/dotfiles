@@ -1,19 +1,8 @@
-# Add '~/bin' to path
-export PATH="$HOME/bin:$PATH"
-
-# Add sbin to path
-export PATH="/usr/local/sbin:$PATH"
-
 # Load dotfiles
 for file in ~/.{exports,aliases,extra}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
-
-# Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-  thencomplete -o default -o nospace -F _git g;
- fi;
 
 source $HOME/.zsh-antigen/antigen/antigen.zsh
 
@@ -21,27 +10,23 @@ source $HOME/.zsh-antigen/antigen/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle git
 antigen bundle osx
+antigen bundle brew
+antigen bundle brew-cask
+antigen bundle battery
+antigen bundle cabal
+antigen bundle colorize
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle tarruda/zsh-autosuggestions
 
 # Antigen theme
-antigen theme Fapper/dotfiles .zsh/themes/martin
+antigen theme Fapper/dotfiles /.zsh/themes/martin
 
 # Apply
 antigen apply
 
-# Path
-#PATHDIRS=(
-#/usr/local/bin
-#/usr/local
-#/usr/bin
-#/usr/sbin
-#/sbin
-#/usr/local/sbin
-#/usr/texbin
-##$HOME/.rvm/bin/
-#$HOME/bin
-#)
-#path=($path $dir)
+# Enable zsh-completions
+# https://github.com/zsh-users/zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Instantiate rbenv with zsh
 eval "$(rbenv init -)"
@@ -49,6 +34,5 @@ eval "$(rbenv init -)"
 # Instantiate pyenv with zsh
 eval "$(pyenv init -)"
 
-# Set locale info
-export LC_ALL=en_US.UTF-8  
-export LANG=en_US.UTF-8
+eval `gdircolors ~/.solarized.dircolors.256dark`
+alias ls='gls --color=auto --group-directories-first'
