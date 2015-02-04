@@ -33,3 +33,6 @@ export PATH="$HOME/.cabal/bin:$PATH"
 # Set locale info
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
+
+# Syntax highlighting of less
+export LESSOPEN="| pygmentize %s"
