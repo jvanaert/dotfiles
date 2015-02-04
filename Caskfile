@@ -65,6 +65,7 @@ cask install unetbootin
 cask install onepassword
 cask install github
 cask install speedcrunch
+cask install openemu
 
 # Dev
 cask install pgadmin3

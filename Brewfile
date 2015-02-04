@@ -12,7 +12,7 @@ install findutils
 install gnu-sed --default-names
 
 # More recent versions of OS X tools
-install vim --with-lua --override-system-vi --with-python3
+#install vim --with-lua --override-system-vi --with-python3
 install homebrew/dupes/grep
 install homebrew/dupes/screen
 
@@ -25,7 +25,6 @@ install macvim --with-lua --with-python3 --override-system-vim --HEAD
 # Apps
 install archey
 install tmux
-install openemu
 
 # Utilities
 install zsh --disable-etcdir
