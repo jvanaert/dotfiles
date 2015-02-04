@@ -34,5 +34,6 @@ eval "$(rbenv init -)"
 # Instantiate pyenv with zsh
 eval "$(pyenv init -)"
 
-eval `gdircolors ~/.solarized.dircolors.256dark`
+eval `gdircolors ~/.solarized-dark.dircolors`
 alias ls='gls --color=auto --group-directories-first'
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
