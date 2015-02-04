@@ -9,13 +9,19 @@ source $HOME/.zsh-antigen/antigen/antigen.zsh
 # Antigen modules
 antigen use oh-my-zsh
 antigen bundle git
+antigen bundle github
+antigen bundle powder
 antigen bundle osx
 antigen bundle brew
 antigen bundle brew-cask
 antigen bundle battery
 antigen bundle cabal
 antigen bundle colorize
-antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle gem
+antigen bundle rbenv
+antigen bundle rsync
+antigen bundle tmux
+antigen bundle zsh-users/zsh-syntax-highlighting/usr/bin/src-hilite-lesspipe.sh
 antigen bundle tarruda/zsh-autosuggestions
 
 # Antigen theme
