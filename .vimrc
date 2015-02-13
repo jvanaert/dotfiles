@@ -29,6 +29,7 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'jpalardy/vim-slime'
 Plugin 'majutsushi/tagbar'
 Plugin 'bitc/vim-hdevtools'
+Plugin 'godlygeek/tabular' " to lign up text
 
 " Haskell dev
 Plugin 'eagletmt/neco-ghc'
