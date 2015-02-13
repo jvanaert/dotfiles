@@ -17,6 +17,8 @@ alias h="history"
 alias g="git"
 alias gs="git status -s"
 
+alias dotfiles="cd ~/Projects/dotfiles"
+
 #alias ls='/usr/local/Cellar/coreutils/8.23_1/bin/gls -G'
 #alias ls='gls --color=auto --group-directories-first'
 
