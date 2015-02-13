@@ -39,7 +39,6 @@ install gnuplot
 install tree
 install htop-osx
 install nmap
-install hub
 
 # Fixes
 install readline
@@ -47,7 +46,6 @@ install reattach-to-user-namespace
 install tuntap
 install wine
 #install winetricks
-
 
 # Dev
 install python
@@ -63,7 +61,9 @@ install postgresql
 install sqlite
 install cmake
 install git
-install git-cola
+install git-cola # git viewer
+install hub # github cli
+install gist # github gist cli
 install nginx
 install openssh
 install openssl
