@@ -1,1 +1,1 @@
-irssi-smartfilter/smartfilter.pl
+../irssi-smartfilter/smartfilter.pl
