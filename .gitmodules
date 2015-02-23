@@ -10,3 +10,6 @@
 [submodule "init/dircolors-solarized"]
 	path = init/dircolors-solarized
 	url = git@github.com:seebi/dircolors-solarized.git
+[submodule ".irssi/scripts/irssi-smartfilter"]
+	path = .irssi/scripts/irssi-smartfilter
+	url = git@github.com:lifeforms/irssi-smartfilter.git
