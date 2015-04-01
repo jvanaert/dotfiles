@@ -46,11 +46,10 @@ servers = (
 );
 
 chatnets = {
-  MBMFreenode = { type = "IRC"; };
-  MBMSnoonet = { type = "IRC"; };
-  MBMEspernet = { type = "IRC"; };
-  MBMQuakenet = { type = "IRC"; };
-  Mbmtest = { type = "IRC"; };
+  freenode = { type = "IRC"; };
+  snoonet = { type = "IRC"; };
+  espernet = { type = "IRC"; };
+  quakenet = { type = "IRC"; };
 };
 
 aliases = {
