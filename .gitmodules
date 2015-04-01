@@ -13,3 +13,6 @@
 [submodule ".irssi/scripts/irssi-smartfilter"]
 	path = .irssi/scripts/irssi-smartfilter
 	url = git@github.com:lifeforms/irssi-smartfilter.git
+[submodule ".irssi/irssi-colors-solarized"]
+	path = .irssi/irssi-colors-solarized
+	url = git://github.com/huyz/irssi-colors-solarized.git
