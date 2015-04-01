@@ -222,9 +222,10 @@ statusbar = {
     topic = " $topic";
     topic_empty = " Irssi v$J - http://www.irssi.org";
 
-    lag = "{sb Lag: $0-}";
+    # Solarized
+    lag = "{sb Lag: %m$0-%n}";
     act = "{sb Act: $0-}";
-    more = "-- more --";
+    more = "%k%3-- more --%n";
   };
 
   default = {
@@ -297,10 +298,18 @@ statusbar = {
 };
 settings = {
   core = {
-    real_name = "Martin Madsen";
-    user_name = "martin";
-    nick = "martin";
+    real_name = "Martin Bjeldbak Madsen";
+    user_name = "martinbmadsen";
+    nick = "martinbmadsen";
   };
   "fe-text" = { actlist_sort = "refnum"; };
+  "fe-common/core" = {
+    # Solarized
+    theme = "irssi-colors-solarized/solarized-universal";
+    hilight_color = "= %R";
+  };
 };
+hilights = (
+  { text = "martinbmadsen"; color = "%M"; nick = "yes"; word = "yes"; }
+);
 logs = { };
