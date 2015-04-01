@@ -1,39 +1,47 @@
 servers = (
   {
     address = "irc.martinbmadsen.dk";
-    chatnet = "MBMFreenode";
+    chatnet = "freenode";
     port = "61835";
-    password = "martin/freenode:PSJK!0piS0gugwHEnqG";
+    password = "martin/freenode:x";
     use_ssl = "yes";
-    ssl_verify = "no";
     autoconnect = "yes";
+
+    ssl_verify = "no";
+    ssl_cert = "~/.irssi/certs/znc.pem";
   },
   {
     address = "irc.martinbmadsen.dk";
-    chatnet = "MBMSnoonet";
+    chatnet = "snoonet";
     port = "61835";
-    password = "martin/snoonet:PSJK!0piS0gugwHEnqG";
+    password = "martin/snoonet:x";
     use_ssl = "yes";
-    ssl_verify = "no";
     autoconnect = "yes";
+
+    ssl_verify = "no";
+    ssl_cert = "~/.irssi/certs/znc.pem";
   },
   {
     address = "irc.martinbmadsen.dk";
-    chatnet = "MBMEspernet";
+    chatnet = "espernet";
     port = "61835";
-    password = "martin/espernet:PSJK!0piS0gugwHEnqG";
-    use_ssl = "yes";
+    password = "martin/espernet:x";
     ssl_verify = "no";
     autoconnect = "yes";
+
+    ssl_verify = "no";
+    ssl_cert = "~/.irssi/certs/znc.pem";
   },
   {
     address = "irc.martinbmadsen.dk";
-    chatnet = "MBMQuakenet";
+    chatnet = "quakenet";
     port = "61835";
-    password = "martin/quakenet:PSJK!0piS0gugwHEnqG";
+    password = "martin/quakenet:x";
     use_ssl = "yes";
-    ssl_verify = "no";
     autoconnect = "yes";
+
+    ssl_verify = "no";
+    ssl_cert = "~/.irssi/certs/znc.pem";
   }
 );
 
@@ -42,6 +50,7 @@ chatnets = {
   MBMSnoonet = { type = "IRC"; };
   MBMEspernet = { type = "IRC"; };
   MBMQuakenet = { type = "IRC"; };
+  Mbmtest = { type = "IRC"; };
 };
 
 aliases = {
@@ -294,6 +303,13 @@ statusbar = {
         topicbarend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_0 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
 settings = {
@@ -308,6 +324,7 @@ settings = {
     theme = "irssi-colors-solarized/solarized-universal";
     hilight_color = "= %R";
   };
+  "perl/core/scripts" = { awl_shared_sbar = "OFF"; };
 };
 hilights = (
   { text = "martinbmadsen"; color = "%M"; nick = "yes"; word = "yes"; }
