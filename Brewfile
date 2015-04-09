@@ -69,5 +69,7 @@ install openssh
 install openssl
 install openvpn
 install heroku-toolbelt
+install java # JDK
+install pandoc
 
 cleanup
