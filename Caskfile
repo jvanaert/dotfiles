@@ -35,12 +35,14 @@ cask install firefox
 cask install dropbox
 cask install ynab
 cask install skim
+#cask install bitcoin-core
 #cask install dogecoin
 cask install dropbox
 cask install skype
 cask install tunnelblick
 cask install teamviewer
 cask install basictex
+cask install tex-live-utility 
 cask install virtualbox
 cask install xtrafinder
 cask install vlc
@@ -51,7 +53,6 @@ cask install gimp
 cask install evernote
 cask install adobe-reader
 cask install bibdesk
-#cask install bitcoin-core
 cask install daisydisk
 cask install handbrake
 cask install inkscape
