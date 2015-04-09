@@ -40,7 +40,7 @@ cask install dropbox
 cask install skype
 cask install tunnelblick
 cask install teamviewer
-cask install mactex
+cask install basictex
 cask install virtualbox
 cask install xtrafinder
 cask install vlc
