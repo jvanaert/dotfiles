@@ -37,6 +37,8 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   # Install gems
   gem install --no-ri --no-rdoc bundler 
   gem install --no-ri --no-rdoc lunchy
+  gem install --no-ri --no-rdoc tmuxinator
+  gem install --no-ri --no-rdoc powder
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # Linux
   # need rbenv, ruby-build, pyenv
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then # Windows
