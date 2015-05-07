@@ -29,7 +29,6 @@ servers = (
     ssl_verify = "no";
     autoconnect = "yes";
 
-    ssl_verify = "no";
     ssl_cert = "~/.irssi/certs/znc.pem";
   },
   {
@@ -252,9 +251,9 @@ statusbar = {
         window = { };
         window_empty = { };
         lag = { priority = "-1"; };
-        act = { priority = "10"; };
         more = { priority = "-1"; alignment = "right"; };
         barend = { priority = "100"; alignment = "right"; };
+        usercount = { };
       };
     };
 

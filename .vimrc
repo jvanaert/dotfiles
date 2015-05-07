@@ -6,10 +6,10 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-if has('nvim')
-  runtime! plugin/python_setup.vim
-  set unnamedclip
-endif
+" if has('nvim')
+"   runtime! plugin/python_setup.vim
+"   set unnamedclip
+" endif
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
@@ -17,6 +17,7 @@ Bundle 'kien/ctrlp.vim'
 " Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/syntastic' " syntax checker
 Plugin 'tpope/vim-fugitive' " git wrapper
+Plugin 'tpope/vim-endwise' " automatically add end for ruby
 " Bundle 'cespare/vim-bclose'
 Plugin 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 Plugin 'bling/vim-airline'
@@ -397,3 +398,16 @@ if has('mac')
   " http://vim.wikia.com/wiki/Mac%5FOS%5FX%5Fclipboard%5Fsharing
   set clipboard=unnamed
 endif
+
+function s:MkNonExDir(file, buf)
+    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+        if !isdirectory(dir)
+            call mkdir(dir, 'p')
+        endif
+    endif
+endfunction
+augroup BWCCreateDir
+    autocmd!
+    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
