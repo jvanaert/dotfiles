@@ -1,5 +1,5 @@
 [submodule ".zsh-antigen/antigen"]
-	path = .zsh-antigen/antigen
+	path = .antigen
 	url = https://github.com/zsh-users/antigen.git
 [submodule ".vim/bundle/Vundle.vim"]
 	path = .vim/bundle/Vundle.vim
