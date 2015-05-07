@@ -2,6 +2,7 @@ export PATH="$HOME/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/texbin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
+export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 # export PATH="$(brew --prefix homebrew/php/php54)/bin:$PATH"
 export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
@@ -34,3 +35,6 @@ export LANG=en_US.UTF-8
 
 # Syntax highlighting of less
 export LESSOPEN="| pygmentize %s"
+
+# antlr4 classpath definition
+export CLASSPATH=".:/usr/local/Cellar/antlr/4.5/antlr-4.5-complete.jar:$CLASSPATH"

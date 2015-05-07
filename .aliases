@@ -7,8 +7,8 @@ alias .....="cd ../../../.."
 # Shortcuts
 alias drop="cd ~/Documents/Dropbox"
 alias ucsd="cd ~/Documents/Dropbox/UCSD"
-alias 230="cd ~/Documents/Dropbox/UCSD/CSE-230"
-alias 232="cd ~/Documents/Dropbox/UCSD/CSE-232"
+alias 210="cd ~/Documents/Dropbox/UCSD/CSE-210"
+alias 232="cd ~/Documents/Dropbox/UCSD/CSE-232B"
 alias 190="cd ~/Documents/Dropbox/UCSD/CSE-190"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
@@ -17,10 +17,11 @@ alias h="history"
 alias g="git"
 alias gs="git status -s"
 
-alias dotfiles="cd ~/Projects/dotfiles"
+alias dotfiles="cd ~/Projects/Dotfiles"
 
 #alias ls='/usr/local/Cellar/coreutils/8.23_1/bin/gls -G'
 #alias ls='gls --color=auto --group-directories-first'
+
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
@@ -94,7 +95,7 @@ pygmentizeHTML() {
 alias pygmentizeHTML=pygmentizeHTML
 
 tarFolder() {
-  tar -zcvf $1.tar.gz "$1"
+  tar -zcf $1.tar.gz "$1"
 }
 alias tarFolder=tarFolder
 
