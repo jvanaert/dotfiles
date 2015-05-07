@@ -1,5 +1,8 @@
+tap 'neovim/homebrew-neovim'
+
 update
 upgrade
+
 
 # Install GNU core utilities (those that come with OS X are outdated)
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
@@ -9,30 +12,28 @@ install coreutils
 install findutils
 
 # Install GNU `sed`, overwriting the built-in `sed`
-install gnu-sed --default-names
+install gnu-sed, args: ['default-names']
 
 # More recent versions of OS X tools
 #install vim --with-lua --override-system-vi --with-python3
 install homebrew/dupes/grep
 install homebrew/dupes/screen
 
-# Install Neovim
-tap neovim/homebrew-neovim
-install --HEAD neovim
+install neovim, args: ['HEAD']
 
-install macvim --with-lua --with-python3 --override-system-vim --HEAD
+install macvim, args: ['with-lua', 'with-python3', 'override-system-vim', 'HEAD']
 
 # Apps
 install archey
 install tmux
 
 # Utilities
-install zsh --disable-etcdir
+install zsh, args: ['disable-etcdir']
 install harfbuzz
-install wget --enable-iri
+install wget, args: ['enable-iri']
 install pow
 install ack
-install imagemagick --with-webp
+install imagemagick, args: ['with-webp']
 install graphviz
 install par
 install gnuplot
