@@ -20,7 +20,6 @@ install homebrew/dupes/grep
 install homebrew/dupes/screen
 
 install neovim, args: ['HEAD']
-
 install macvim, args: ['with-lua', 'with-python3', 'override-system-vim', 'HEAD']
 
 # Apps
@@ -49,10 +48,9 @@ install wine
 #install winetricks
 
 # Dev
-install python
-install python3
 install rbenv
 install pyenv
+install homebrew/boneyard/pyenv-pip-rehash
 install ruby-build
 install gcc
 install ghc cabal-install

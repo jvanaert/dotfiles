@@ -20,6 +20,11 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   brew bundle Caskfile
   rm Caskfile
 
+  # Setup Python env
+  pyenv install 3.4.3
+  pyenv global 3.4.3
+  pyenv rehash
+
   # Install pip
   wget https://bootstrap.pypa.io/get-pip.py
   python get-pip.py
@@ -33,6 +38,12 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   rbenv install 2.1.2
   rbenv global 2.1.2
   rbenv rehash
+
+  # Install gems
+  gem install --no-ri --no-rdoc bundler 
+  gem install --no-ri --no-rdoc lunchy
+  gem install --no-ri --no-rdoc tmuxinator
+  gem install --no-ri --no-rdoc powder
 
   # Install latex packages
   sudo tlmgr install datetime2
@@ -52,12 +63,6 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   sudo tlmgr install multirow
   sudo tlmgr install authblk
   sudo tlmgr install titlesec
-
-  # Install gems
-  gem install --no-ri --no-rdoc bundler 
-  gem install --no-ri --no-rdoc lunchy
-  gem install --no-ri --no-rdoc tmuxinator
-  gem install --no-ri --no-rdoc powder
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # Linux
   # need rbenv, ruby-build, pyenv
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then # Windows
