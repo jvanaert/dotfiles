@@ -34,6 +34,25 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   rbenv global 2.1.2
   rbenv rehash
 
+  # Install latex packages
+  sudo tlmgr install datetime2
+  sudo tlmgr install datetime2-english
+  sudo tlmgr install lacheck
+  sudo tlmgr install chktex
+  sudo tlmgr install IEEEconf
+  sudo tlmgr install enumitem
+  sudo tlmgr install xstring
+  sudo tlmgr install ifplatform
+  sudo tlmgr install minted
+  sudo tlmgr install tracklang
+  sudo tlmgr install cleveref
+  sudo tlmgr install placeins
+  sudo tlmgr install pgfplots
+  sudo tlmgr install pgfplotstable
+  sudo tlmgr install multirow
+  sudo tlmgr install authblk
+  sudo tlmgr install titlesec
+
   # Install gems
   gem install --no-ri --no-rdoc bundler 
   gem install --no-ri --no-rdoc lunchy
