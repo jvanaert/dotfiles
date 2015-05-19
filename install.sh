@@ -63,6 +63,8 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   sudo tlmgr install multirow
   sudo tlmgr install authblk
   sudo tlmgr install titlesec
+  sudo tlmgr install todonotes 
+  sudo tlmgr install siunitx
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # Linux
   # need rbenv, ruby-build, pyenv
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then # Windows
