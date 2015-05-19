@@ -1,4 +1,4 @@
-tap 'neovim/homebrew-neovim'
+tap neovim/homebrew-neovim
 
 update
 upgrade
@@ -70,5 +70,6 @@ install openvpn
 install heroku-toolbelt
 install java # JDK
 install pandoc
+install cheat
 
 cleanup
