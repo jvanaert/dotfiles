@@ -65,6 +65,10 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   sudo tlmgr install titlesec
   sudo tlmgr install todonotes 
   sudo tlmgr install siunitx
+  sudo tlmgr install csv
+  sudo tlmgr install import 
+  sudo tlmgr install collection-latexrecommended
+  sudo tlmgr install collection-fontsrecommended
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # Linux
   # need rbenv, ruby-build, pyenv
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then # Windows
