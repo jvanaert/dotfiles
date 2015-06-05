@@ -93,6 +93,8 @@ cask install font-ubuntu
 cask install font-fira-sans
 cask install font-fira-mono
 cask install font-hasklig
+cask install font-xits-math
+cask install font-fontawesome
 
 # Cleanup
 cask cleanup
