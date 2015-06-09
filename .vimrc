@@ -1,3 +1,5 @@
+let g:python_host_prog = '/usr/bin/python2.7'
+
 "let &runtimepath .= "," . VIMFILES . "/bundle/vundle"
 "call vundle#rc(VIMFILES . '/bundle/')
 set nocompatible              " be iMproved, required
@@ -5,11 +7,6 @@ filetype off                  " required
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
-" if has('nvim')
-"   runtime! plugin/python_setup.vim
-"   set unnamedclip
-" endif
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
@@ -26,7 +23,8 @@ Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
 " Plugin 'AutoComplPop' "autocompletion
 Plugin 'rizzatti/dash.vim' " autocompletion
-Plugin 'Shougo/neocomplete.vim'
+" Plugin 'Shougo/neocomplete.vim' doesn't work with neovim
+" Plugin 'Valloric/YouCompleteMe'
 Plugin 'jpalardy/vim-slime'
 Plugin 'majutsushi/tagbar'
 Plugin 'bitc/vim-hdevtools'
@@ -101,6 +99,8 @@ autocmd BufEnter * silent! lcd %:p:h
 
 set number
 
+
+
 " fix regexes default regex handling by
 " auto-inserting \v before every REGEX.
 nnoremap / /\v
@@ -128,50 +128,50 @@ nmap <leader>d :bd<CR>
 " Neocomplete
 """"""""""""""""""""""""""
 
-let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
-let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
-let g:neocomplete#enable_smart_case = 1 " Use smartcase.
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-      \ 'default' : '',
-      \ 'vimshell' : $HOME.'/.vimshell_hist',
-      \ 'scheme' : $HOME.'/.gosh_completions'
-      \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
+" let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
+" let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
+" let g:neocomplete#enable_smart_case = 1 " Use smartcase.
+" " Set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" 
+" " Define dictionary.
+" let g:neocomplete#sources#dictionary#dictionaries = {
+"       \ 'default' : '',
+"       \ 'vimshell' : $HOME.'/.vimshell_hist',
+"       \ 'scheme' : $HOME.'/.gosh_completions'
+"       \ }
+" 
+" " Define keyword.
+" if !exists('g:neocomplete#keyword_patterns')
+"     let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" 
+" " Enable heavy omni completion.
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"   let g:neocomplete#sources#omni#input_patterns = {}
+" endif
 
 " Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
+" inoremap <expr><C-g>     neocomplete#undo_completion()
+" inoremap <expr><C-l>     neocomplete#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-endfunction
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return neocomplete#close_popup() . "\<CR>"
+" endfunction
+" 
+" " <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" 
+" " <C-h>, <BS>: close popup and delete backword char.
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y>  neocomplete#close_popup()
+" inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " au BufRead,BufNewFile *.hs,*lhs set filetype=haskell
 " Enable omni completion.
@@ -201,6 +201,15 @@ let g:slime_paste_file = tempname()
 """"""""""""""""""""""""""
 " Syntastic
 """"""""""""""""""""""""""
+" Recommended Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 
 " Toggle between active and passive type checking
 map <silent> <Leader>e :Errors<CR>
@@ -283,8 +292,8 @@ imap <C-BS> <C-W>
 
 " Spell checking
 " set spell
-" set spelllang=en_us ",da
-" autocmd BufNewFile,BufRead *.tex set spell
+autocmd BufNewFile,BufRead *.tex set spell
+set spelllang=en_us ",da
 
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
@@ -313,7 +322,7 @@ set gdefault
 set breakindent
 " set showbreak=\ \
 set showbreak=\  
-set columns=86
+set columns=79
 
 " For vim-latex grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
@@ -324,10 +333,19 @@ set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
 let g:Tex_IgnoreLevel = 7
 let g:Tex_SmartKeyDot=0 " do not convert ... to \ldots
+let g:Tex_CompileRule_pdf = "xelatex -synctex=1 -shell-escape -interaction=nonstopmode $*"
 let g:Tex_DefaultTargetFormat = "pdf"
-let g:Tex_CompileRule_pdf = "pdflatex -synctex=1 -shell-escape -interaction=nonstopmode $*"
 let g:Tex_MultipleCompileFormats = "pdf, aux"
 let g:Tex_Env_frame = "\\begin{frame}{<++>}\<CR><++>\<CR>\\end{frame}"
+let g:Tex_Env_figure = "\\begin{figure}[htpb]\<CR>\\centering\<CR>\\includegraphics[width=\linewidth]{<+file+>}\<CR>\\caption{<+caption text+>}\\label{fig:<+label+>}\<CR>\\end{figure}<++>"
+
+function SwitchLaTeXCompilers()
+  let oldCompileRule=g:Tex_CompileRule_pdf
+  let g:Tex_CompileRule_pdf = "pdflatex -synctex=1 -shell-escape -interaction=nonstopmode $*"
+  call Tex_RunLaTeX()
+  let g:Tex_CompileRule_pdf=oldCompileRule
+endfunction
+map <Leader>lx :<C-U>call SwitchLaTeXCompilers()<CR>
 
 " Rebind vim-latex C-j to jump to <++>
 imap <C-g> <Plug>IMAP_JumpForward
@@ -398,16 +416,3 @@ if has('mac')
   " http://vim.wikia.com/wiki/Mac%5FOS%5FX%5Fclipboard%5Fsharing
   set clipboard=unnamed
 endif
-
-function s:MkNonExDir(file, buf)
-    if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
-        let dir=fnamemodify(a:file, ':h')
-        if !isdirectory(dir)
-            call mkdir(dir, 'p')
-        endif
-    endif
-endfunction
-augroup BWCCreateDir
-    autocmd!
-    autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
-augroup END
