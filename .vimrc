@@ -23,8 +23,7 @@ Plugin 'bling/vim-airline'
 Plugin 'christoomey/vim-tmux-navigator'
 " Plugin 'AutoComplPop' "autocompletion
 Plugin 'rizzatti/dash.vim' " autocompletion
-" Plugin 'Shougo/neocomplete.vim' doesn't work with neovim
-" Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'jpalardy/vim-slime'
 Plugin 'majutsushi/tagbar'
 Plugin 'bitc/vim-hdevtools'
