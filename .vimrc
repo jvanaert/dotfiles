@@ -1,6 +1,7 @@
 let g:python_host_prog = '/usr/bin/python2.7'
 
 call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim', { 'on': 'CtrlP'}
 " Plug 'mileszs/ack.vim'
@@ -43,7 +44,6 @@ Plug 'altercation/vim-colors-solarized'
 " Plug 'tomasr/molokai'
 call plug#end()
 
-filetype plugin indent on
 set shell=zsh
 
 autocmd VimEnter * wincmd l
@@ -56,7 +56,6 @@ set linebreak
 set hlsearch                   " highlight search
 set ignorecase                 " be case insensitive when searching
 set smartcase                  " be case sensitive when input has a capital letter
-set incsearch                  " show matches while typing
 
 set textwidth=0 " was 70 set textwidth to 70 to cause wrapping
 set wrapmargin=0
@@ -66,7 +65,6 @@ set nolist
 set shiftround                  " round indent to multiple of 'shiftwidth'
 
 set autowrite                  " Writes on make/shell commands
-set autoread
 
 set modeline
 set modelines=5
@@ -124,7 +122,7 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 """"""""""""""""""""""""""
 " YouCompleteMe
 """"""""""""""""""""""""""
-
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
 
@@ -305,9 +303,6 @@ nnoremap <leader>. :CtrlPTag<cr>
 " Bash-like autocomplete
 set wildmode=longest,list,full
 set wildmenu
-
-" Fix backspace and delete problems
-set backspace=indent,eol,start
 
 " Turn on syntax highlighting
 syntax on
