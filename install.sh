@@ -4,6 +4,10 @@ rm -rf .git/
 rm .gitmodules
 rm .gitignore
 
+# Install vim-plug to manage vim plugins
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 # OS-specific installation
 if [ "$(uname)" == "Darwin" ]; then # OS X
   # make sure system is up-to-date
@@ -84,8 +88,8 @@ elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then # Windows
   # need rbenv, ruby-build, pyenv
 fi
 
-# Install vundle plugins
-vim +PluginInstall +qall
+# Install vim plugins
+vim +PlugInstall +qall
 
 # Set shell to zsh
 chsh -s /bin/zsh
