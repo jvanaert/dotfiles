@@ -1,63 +1,49 @@
 let g:python_host_prog = '/usr/bin/python2.7'
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!
-  if a:info.status == 'installed' || a:info.force
-    !./install.sh --clang-completer
-  endif
-endfunction
-
 call plug#begin('~/.vim/plugged')
-
-Plug 'junegunn/vim-plug'
-Plug 'scrooloose/nerdtree'
-Plug 'kien/ctrlp.vim'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'kien/ctrlp.vim', { 'on': 'CtrlP'}
 " Plug 'mileszs/ack.vim'
 Plug 'scrooloose/syntastic' " syntax checker
 Plug 'tpope/vim-fugitive' " git wrapper
-Plug 'tpope/vim-endwise' " automatically add end for ruby
 " Plug 'cespare/vim-bclose'
 Plug 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
 Plug 'bling/vim-airline'
 "Plug 'tpope/vim-repeat'
 " Plug 'tpope/vim-surround'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'rizzatti/dash.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM')}
-Plug 'jpalardy/vim-slime'
+Plug 'rizzatti/dash.vim', { 'on': 'Dash' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer'}
 Plug 'majutsushi/tagbar'
-Plug 'bitc/vim-hdevtools'
 Plug 'godlygeek/tabular' " to lign up text
 
+" Tmux integration
+" Plug 'jpalardy/vim-slime' " send text to tmux session
+Plug 'christoomey/vim-tmux-navigator'
+
 " Haskell dev
-Plug 'eagletmt/neco-ghc'
-Plug 'eagletmt/ghcmod-vim'
-Plug 'Twinside/vim-hoogle'
-Plug 'raichoo/haskell-vim'
-Plug 'Shougo/vimproc.vim'
+Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
+Plug 'raichoo/haskell-vim', { 'for': 'haskell' }
+Plug 'Shougo/vimproc.vim', { 'for': 'haskell' }
 
 " Ruby dev (uncommented due to RubyMine (ugh, I know))
-" Plug 'mustache/vim-mustache-handlebars'
-" Plug 'vim-ruby/vim-ruby'
-" Plug 'scrooloose/nerdcommenter'
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'scrooloose/nerdcommenter', { 'for': 'ruby' }
+Plug 'tpope/vim-endwise', { 'for': 'ruby' } " automatically add end for ruby
 
 " Python dev
-Plug 'nvie/vim-flake8' " python syntax checker
+Plug 'nvie/vim-flake8', { 'for': 'python' } " python syntax checker
 
 " Themes
 Plug 'altercation/vim-colors-solarized'
-Plug 'nanotech/jellybeans.vim'
-Plug 'tomasr/molokai'
+" Plug 'nanotech/jellybeans.vim'
+" Plug 'tomasr/molokai'
 call plug#end()
 
 filetype plugin indent on
-
 set shell=zsh
 
 autocmd VimEnter * wincmd l
@@ -134,6 +120,12 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+""""""""""""""""""""""""""
+" YouCompleteMe
+""""""""""""""""""""""""""
+
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
 
 """"""""""""""""""""""""""
