@@ -1,54 +1,60 @@
 let g:python_host_prog = '/usr/bin/python2.7'
 
-"let &runtimepath .= "," . VIMFILES . "/bundle/vundle"
-"call vundle#rc(VIMFILES . '/bundle/')
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.sh --clang-completer
+  endif
+endfunction
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Bundle 'kien/ctrlp.vim'
-" Plugin 'mileszs/ack.vim'
-Plugin 'scrooloose/syntastic' " syntax checker
-Plugin 'tpope/vim-fugitive' " git wrapper
-Plugin 'tpope/vim-endwise' " automatically add end for ruby
-" Bundle 'cespare/vim-bclose'
-Plugin 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
-Plugin 'bling/vim-airline'
-"Bundle 'tpope/vim-repeat'
-" Bundle 'tpope/vim-surround'
-Plugin 'christoomey/vim-tmux-navigator'
-" Plugin 'AutoComplPop' "autocompletion
-Plugin 'rizzatti/dash.vim' " autocompletion
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'jpalardy/vim-slime'
-Plugin 'majutsushi/tagbar'
-Plugin 'bitc/vim-hdevtools'
-Plugin 'godlygeek/tabular' " to lign up text
+call plug#begin('~/.vim/plugged')
+
+Plug 'junegunn/vim-plug'
+Plug 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
+" Plug 'mileszs/ack.vim'
+Plug 'scrooloose/syntastic' " syntax checker
+Plug 'tpope/vim-fugitive' " git wrapper
+Plug 'tpope/vim-endwise' " automatically add end for ruby
+" Plug 'cespare/vim-bclose'
+Plug 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
+Plug 'bling/vim-airline'
+"Plug 'tpope/vim-repeat'
+" Plug 'tpope/vim-surround'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'rizzatti/dash.vim'
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM')}
+Plug 'jpalardy/vim-slime'
+Plug 'majutsushi/tagbar'
+Plug 'bitc/vim-hdevtools'
+Plug 'godlygeek/tabular' " to lign up text
 
 " Haskell dev
-Plugin 'eagletmt/neco-ghc'
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'Twinside/vim-hoogle'
-Plugin 'raichoo/haskell-vim'
-Plugin 'Shougo/vimproc.vim'
+Plug 'eagletmt/neco-ghc'
+Plug 'eagletmt/ghcmod-vim'
+Plug 'Twinside/vim-hoogle'
+Plug 'raichoo/haskell-vim'
+Plug 'Shougo/vimproc.vim'
 
 " Ruby dev (uncommented due to RubyMine (ugh, I know))
-" Plugin 'mustache/vim-mustache-handlebars'
-" Plugin 'vim-ruby/vim-ruby'
-" Bundle 'scrooloose/nerdcommenter'
+" Plug 'mustache/vim-mustache-handlebars'
+" Plug 'vim-ruby/vim-ruby'
+" Plug 'scrooloose/nerdcommenter'
 
 " Python dev
-Plugin 'nvie/vim-flake8' " python syntax checker
+Plug 'nvie/vim-flake8' " python syntax checker
 
 " Themes
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'tomasr/molokai'
-call vundle#end()
+Plug 'altercation/vim-colors-solarized'
+Plug 'nanotech/jellybeans.vim'
+Plug 'tomasr/molokai'
+call plug#end()
 
 filetype plugin indent on
 
@@ -286,7 +292,8 @@ let g:Tex_MultipleCompileFormats = "pdf, aux"
 let g:Tex_Env_frame = "\\begin{frame}{<++>}\<CR><++>\<CR>\\end{frame}"
 let g:Tex_Env_figure = "\\begin{figure}[htpb]\<CR>\\centering\<CR>\\includegraphics[width=\linewidth]{<+file+>}\<CR>\\caption{<+caption text+>}\\label{fig:<+label+>}\<CR>\\end{figure}<++>"
 
-function SwitchLaTeXCompilers()
+" Switches between xelatex and pdflatex compilers
+function! SwitchLaTeXCompilers()
   let oldCompileRule=g:Tex_CompileRule_pdf
   let g:Tex_CompileRule_pdf = "pdflatex -synctex=1 -shell-escape -interaction=nonstopmode $*"
   call Tex_RunLaTeX()
