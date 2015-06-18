@@ -13,18 +13,18 @@ set nocompatible
 set wrap
 set linebreak
 
-set hlsearch                   " highlight search
-set ignorecase                 " be case insensitive when searching
-set smartcase                  " be case sensitive when input has a capital letter
+set hlsearch         " highlight search
+set ignorecase       " be case insensitive when searching
+set smartcase        " be case sensitive when input has a capital letter
 
-set textwidth=0 " was 70 set textwidth to 70 to cause wrapping
+set textwidth=0 " wasxtwidth to 70 to cause wrapping
 set wrapmargin=0
-set history=256                 " Number of things to remember in history.
-set timeoutlen=250              " Time to wait after ESC (default causes an annoying delay)
+set history=256       " Number of things to remember in history.
+set timeoutlen=250    " Time to wait after ESC (default causes an annoying delay)
 set nolist
-set shiftround                  " round indent to multiple of 'shiftwidth'
+set shiftround        " round indent to multiple of 'shiftwidth'
 
-set autowrite                  " Writes on make/shell commands
+set autowrite        " Writes on make/shell commands
 
 set modeline
 set modelines=5
@@ -33,17 +33,49 @@ set laststatus=2
 set shortmess=atI
 set showcmd
 
-set foldenable                " Turn on folding
-set foldmethod=marker         " Fold on the marker
-set foldlevel=100             " Don't autofold anything (but I can still fold manually)
+set foldenable       " Turn on folding
+set foldmethod=marker " Fold on the marker
+set foldlevel=100    " Don't autofold anything (but I can still fold manually)
+set number
 
-"http://vimcasts.org/episodes/formatting-text-with-par/
-" set formatprg=par
+" Persistent Undo
+" Keep undo history across sessions, by storing in file.
+if has('persistent_undo')
+  silent !mkdir ~/.vim/backups > /dev/null 2>&1
+  set undodir=~/.vim/backups
+  set undofile
+endif
+
+" Remember last location in file
+if has("autocmd")
+  autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal g'\"" | endif
+endif
+
+" When vimrc is edited, reload it
+autocmd! bufwritepost .vimrc source ~/.vimrc
 
 " http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
 autocmd BufEnter * silent! lcd %:p:h
 
-set number
+" Save with sudo
+cmap w!! %!sudo tee > /dev/null %
+
+" make `-` and `_` work like `o` and `O` without leaving you stuck in insert
+nnoremap - o<esc>
+nnoremap _ O<esc>
+
+" Turn off the christmas lights
+nnoremap <Leader><cr> :nohlsearch<cr>
+
+" Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+
+" Fast saving
+map <leader>w :w<crt
+
+" Remove whitespace
+nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 
 " fix regexes default regex handling by
 " auto-inserting \v before every REGEX.
@@ -97,6 +129,9 @@ let g:slime_paste_file = tempname()
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+" Enable syntastic syntax checking
+let g:syntastic_enable_signs=1
 
 " let g:syntastic_always_populate_loc_list = 1
 " let g:syntastic_auto_loc_list = 1
@@ -197,12 +232,17 @@ set spelllang=en_us ",da
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
-" Indent with 2 spaced
+" Whitespace defaults
+set smartindent
 set expandtab
 set shiftwidth=2
 set tabstop=2
-set shiftwidth=2
 set softtabstop=2
+set shiftwidth=2
+
+" Show “invisible” characters
+set list
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 
 set mousehide       " Hide mouse after chars typed
 
@@ -265,10 +305,16 @@ syntax on
 
 " Syntax highlighting of different languages
 au BufRead,BufNewFile *.tikz set filetype=tex
+autocmd BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Procfile,Thorfile,config.ru}  set ft=ruby
 
-" 4 indents in python files only
-autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+" 4 indents in python files only (PEP8)
+autocmd FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
 au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
+
+" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
+
+set ffs=unix,dos,mac "Default file types
 
 " Colorscheme stuff 
 colorscheme solarized
