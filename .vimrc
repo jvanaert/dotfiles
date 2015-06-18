@@ -1,50 +1,10 @@
-let g:python_host_prog = '/usr/bin/python2.7'
+let g:python_host_prog  = '~/.pyenv/shims/python2.7'
+let g:python3_host_prog = '~/.pyenv/shims/python3.4'
 
-call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-sensible'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'kien/ctrlp.vim', { 'on': 'CtrlP'}
-" Plug 'mileszs/ack.vim'
-Plug 'scrooloose/syntastic' " syntax checker
-Plug 'tpope/vim-fugitive' " git wrapper
-" Plug 'cespare/vim-bclose'
-Plug 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex'
-Plug 'bling/vim-airline'
-"Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-surround'
-Plug 'rizzatti/dash.vim', { 'on': 'Dash' }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer'}
-Plug 'majutsushi/tagbar'
-Plug 'godlygeek/tabular' " to lign up text
+" Load plugins
+source ~/.vimrc.plugins
 
-" Tmux integration
-" Plug 'jpalardy/vim-slime' " send text to tmux session
-Plug 'christoomey/vim-tmux-navigator'
-
-" Haskell dev
-Plug 'bitc/vim-hdevtools', { 'for': 'haskell' }
-Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
-Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
-Plug 'raichoo/haskell-vim', { 'for': 'haskell' }
-Plug 'Shougo/vimproc.vim', { 'for': 'haskell' }
-
-" Ruby dev (uncommented due to RubyMine (ugh, I know))
-Plug 'mustache/vim-mustache-handlebars', { 'for': 'ruby' }
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'scrooloose/nerdcommenter', { 'for': 'ruby' }
-Plug 'tpope/vim-endwise', { 'for': 'ruby' } " automatically add end for ruby
-
-" Python dev
-Plug 'nvie/vim-flake8', { 'for': 'python' } " python syntax checker
-
-" Themes
-Plug 'altercation/vim-colors-solarized'
-" Plug 'nanotech/jellybeans.vim'
-" Plug 'tomasr/molokai'
-call plug#end()
-
-set shell=zsh
+set shell=/bin/zsh
 
 autocmd VimEnter * wincmd l
 
@@ -85,8 +45,6 @@ autocmd BufEnter * silent! lcd %:p:h
 
 set number
 
-
-
 " fix regexes default regex handling by
 " auto-inserting \v before every REGEX.
 nnoremap / /\v
@@ -104,27 +62,18 @@ set fo-=t  " Do no auto-wrap text using textwidth (does not
 nmap <leader>d :bd<CR>
 
 """"""""""""""""""""""""""
-" Autocompletion
-""""""""""""""""""""""""""
-" imap <Tab> <C-P>
-" set complete=.,b,u,]
-" set omnifunc=syntaxcomplete#Complete
-
-" au BufRead,BufNewFile *.hs,*lhs set filetype=haskell
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
-""""""""""""""""""""""""""
 " YouCompleteMe
 """"""""""""""""""""""""""
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_semantic_triggers = {'haskell' : ['.']}
 
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 """"""""""""""""""""""""""
 " Tagbar
@@ -180,6 +129,13 @@ au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
 """"""""""""""""""""""""""
 
 let NERDTreeWinSize=40
+
+""""""""""""""""""""""""""
+" Mustache/handlebars
+""""""""""""""""""""""""""
+
+let g:mustache_abbreviations = 1
+
 
 """"""""""""""""""""""""""
 " Unorganized  stuff
@@ -280,7 +236,7 @@ let g:Tex_CompileRule_pdf = "xelatex -synctex=1 -shell-escape -interaction=nonst
 let g:Tex_DefaultTargetFormat = "pdf"
 let g:Tex_MultipleCompileFormats = "pdf, aux"
 let g:Tex_Env_frame = "\\begin{frame}{<++>}\<CR><++>\<CR>\\end{frame}"
-let g:Tex_Env_figure = "\\begin{figure}[htpb]\<CR>\\centering\<CR>\\includegraphics[width=\linewidth]{<+file+>}\<CR>\\caption{<+caption text+>}\\label{fig:<+label+>}\<CR>\\end{figure}<++>"
+let g:Tex_Env_figure = "\\begin{figure}\<CR>\\centering\<CR>\\includegraphics[width=\\linewidth]{<+file+>}\<CR>\\caption{<+caption text+>}\\label{fig:<+label+>}\<CR>\\end{figure}<++>"
 
 " Switches between xelatex and pdflatex compilers
 function! SwitchLaTeXCompilers()
