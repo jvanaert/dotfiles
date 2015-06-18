@@ -82,6 +82,7 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   sudo tlmgr install biblatex 
   sudo tlmgr install logreq 
   sudo tlmgr install fontawesome
+  sudo tlmgr install biber 
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # Linux
   # need rbenv, ruby-build, pyenv
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then # Windows
