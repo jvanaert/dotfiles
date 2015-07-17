@@ -25,8 +25,9 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   rm Caskfile
 
   # Setup Python env
+  pyenv install 2.7
   pyenv install 3.4.3
-  pyenv global 3.4.3
+  pyenv global 2.7 3.4.3
   pyenv rehash
 
   # Install pip
@@ -37,6 +38,8 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   pip install livestreamer
   pip install flake8
   pip install pygments
+  pip install "requests[security]"
+  pip install howdoi
 
   # Setup Ruby env
   rbenv install 2.1.2
@@ -49,7 +52,11 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   gem install --no-ri --no-rdoc tmuxinator
   gem install --no-ri --no-rdoc powder
 
-  # Install latex packages
+  # Node
+  npm install -g jshint
+  npm install -g bower
+
+  # LaTeX
   sudo tlmgr install datetime2
   sudo tlmgr install datetime2-english
   sudo tlmgr install lacheck
