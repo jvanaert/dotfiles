@@ -1,5 +1,7 @@
-let g:python_host_prog  = '~/.pyenv/shims/python2.7'
-let g:python3_host_prog = '~/.pyenv/shims/python3.4'
+let g:python_host_prog  = '/Users/martin/.pyenv/versions/2.7/bin/python2.7'
+let g:python3_host_prog = '/Users/martin/.pyenv/versions/3.4.3/bin/python3.4'
+" " let g:ycm_path_to_python_interpreter = '/Users/martin/.pyenv/versions/2.7/bin/python2.7'
+let g:ycm_path_to_python_interpreter = '/Users/martin/.pyenv/versions/2.7/bin/python2.7'
 
 " Load plugins
 source ~/.vimrc.plugins
@@ -106,6 +108,7 @@ autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS 
 
 """"""""""""""""""""""""""
 " Tagbar
@@ -133,15 +136,16 @@ set statusline+=%*
 " Enable syntastic syntax checking
 let g:syntastic_enable_signs=1
 
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Toggle between active and passive type checking
 map <silent> <Leader>e :Errors<CR>
 map <Leader>s :SyntasticToggleMode<CR> 
 let g:syntastic_python_checkers=['flake8'] " use flake8
+let g:syntastic_javascript_checkers = ['jshint']
 
 """"""""""""""""""""""""""
 " ghc-mod (not a vim plugin)
@@ -181,6 +185,12 @@ nmap <leader>h <C-w><C-h>
 nmap <leader>j <C-w><C-j>
 nmap <leader>k <C-w><C-k>
 nmap <leader>l <C-w><C-l>
+
+nnoremap <silent> <leader>h :TmuxNavigateLeft<cr>
+nnoremap <silent> <leader>j :TmuxNavigateDown<cr>
+nnoremap <silent> <leader>k :TmuxNavigateUp<cr>
+nnoremap <silent> <leader>l :TmuxNavigateRight<cr>
+nnoremap <silent> <leader>p :TmuxNavigatePrevious<cr>
 
 " More natural split opening
 set splitbelow
@@ -300,11 +310,15 @@ nnoremap <leader>. :CtrlPTag<cr>
 set wildmode=longest,list,full
 set wildmenu
 
+let g:tmux_navigator_no_mappings = 1
+
+
 " Turn on syntax highlighting
 syntax on
 
 " Syntax highlighting of different languages
 au BufRead,BufNewFile *.tikz set filetype=tex
+au BufRead,BufNewFile .bowerrc set filetype=json
 autocmd BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Procfile,Thorfile,config.ru}  set ft=ruby
 
 " 4 indents in python files only (PEP8)
