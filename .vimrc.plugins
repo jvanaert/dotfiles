@@ -3,26 +3,30 @@ call plug#begin('~/.vim/plugged')
 " UI & util
 Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'kien/ctrlp.vim', { 'on': 'CtrlP' }
+Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/syntastic' " syntax checker
 Plug 'tpope/vim-fugitive' " git wrapper
 Plug 'bling/vim-airline'
 Plug 'rizzatti/dash.vim', { 'on': 'Dash' }
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' } "  --clang-completer' }
 Plug 'majutsushi/tagbar'
 Plug 'godlygeek/tabular' " to line up text
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Raimondi/delimitMate'
+" Plug 'airblade/vim-gitgutter'
 
 " Smaller languages
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'tpope/vim-haml', { 'for': ['haml', 'sass', 'scss'] }
 Plug 'vim-scripts/HTML-AutoCloseTag', { 'for': 'html' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['html', 'css'] }
 Plug 'skammer/vim-css-color', { 'for': 'css' }
+Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'jtratner/vim-flavored-markdown', { 'for': 'markdown' }
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 Plug 'keith/tmux.vim', { 'for': 'tmux' }
@@ -57,6 +61,11 @@ Plug 'tpope/vim-endwise', { 'for': 'ruby' } " automatically add 'end'
 
 " Python
 Plug 'nvie/vim-flake8', { 'for': 'python' } " python syntax checker
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+
+" JavaScript
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install'  }
 
 " Themes
 Plug 'altercation/vim-colors-solarized'
