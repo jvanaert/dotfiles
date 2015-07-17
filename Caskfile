@@ -67,6 +67,10 @@ cask install onepassword
 cask install github
 cask install speedcrunch
 cask install openemu
+cask install obs
+cask install coconutbattery
+cask install vagrant
+cask install vagrant-manager
 
 # Dev
 cask install pgadmin3
