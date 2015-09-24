@@ -93,6 +93,9 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # Linux
   # need rbenv, ruby-build, pyenv
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then # Windows
+ # TODO: Open powershell and run:
+   # (new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | iex
+   # then: "Install-Module posh-git"
   # need rbenv, ruby-build, pyenv
 fi
 
