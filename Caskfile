@@ -71,6 +71,7 @@ cask install obs
 cask install coconutbattery
 cask install vagrant
 cask install vagrant-manager
+cask install qlvideo
 
 # Dev
 cask install pgadmin3
@@ -99,6 +100,7 @@ cask install font-fira-mono
 cask install font-hasklig
 cask install font-xits-math
 cask install font-fontawesome
+cask install font-roboto
 
 # Cleanup
 cask cleanup
