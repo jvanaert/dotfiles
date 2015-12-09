@@ -19,12 +19,20 @@ set hlsearch         " highlight search
 set ignorecase       " be case insensitive when searching
 set smartcase        " be case sensitive when input has a capital letter
 
-set textwidth=0 " wasxtwidth to 70 to cause wrapping
+set textwidth=70 " wasxtwidth to 70 to cause wrapping
 set wrapmargin=0
 set history=256       " Number of things to remember in history.
 set timeoutlen=250    " Time to wait after ESC (default causes an annoying delay)
 set nolist
 set shiftround        " round indent to multiple of 'shiftwidth'
+set breakindent
+set autoindent
+set cursorline " highlight current line
+set showbreak=\  
+" let &showbreak = '↳ '
+set columns=79
+set breakindent
+set cpo=n
 
 set autowrite        " Writes on make/shell commands
 
@@ -36,9 +44,12 @@ set shortmess=atI
 set showcmd
 
 set foldenable       " Turn on folding
-set foldmethod=marker " Fold on the marker
+set foldmethod=indent " fold based on indent level 
+set foldlevelstart=10   " open most folds by default
+set foldnestmax=10      " 10 nested fold max
 set foldlevel=100    " Don't autofold anything (but I can still fold manually)
-set number
+
+set number " show file numbers
 
 " Persistent Undo
 " Keep undo history across sessions, by storing in file.
@@ -81,8 +92,8 @@ nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 
 " fix regexes default regex handling by
 " auto-inserting \v before every REGEX.
-nnoremap / /\v
-vnoremap / /\v
+nnoremap / /\\v
+vnoremap / /\\v
 
 let g:is_posix = 1
 let mapleader = ","
@@ -93,7 +104,7 @@ set fo-=r  " Do not automatically insert a comment leader after an enter
 set fo-=t  " Do no auto-wrap text using textwidth (does not
            " apply to comments)
 
-nmap <leader>d :bd<CR>
+" nmap <leader>d :bd<CR>
 
 """"""""""""""""""""""""""
 " YouCompleteMe
@@ -129,17 +140,27 @@ let g:slime_paste_file = tempname()
 " Syntastic
 """"""""""""""""""""""""""
 " Recommended Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 " Enable syntastic syntax checking
 let g:syntastic_enable_signs=1
+let g:syntastic_error_symbol = '✘'
+let g:syntastic_warning_symbol = '⚠'
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" let g:syntastic_quiet_messages = {
+"   \ "level": "errors",
+"   \ "regex": "Could not open " }
+" 
+" let g:syntastic_quiet_messages = {
+"   \ "level": "warnings",
+"   \ "regex": "Could not execute " }
 
 " Toggle between active and passive type checking
 map <silent> <Leader>e :Errors<CR>
@@ -175,6 +196,62 @@ let NERDTreeWinSize=40
 
 let g:mustache_abbreviations = 1
 
+""""""""""""""""""""""""""
+" Gundo
+""""""""""""""""""""""""""
+
+nnoremap <leader>u :GundoToggle<CR>
+
+
+""""""""""""""""""""""""""
+" CtrlP
+""""""""""""""""""""""""""
+
+let g:ctrlp_match_window = 'bottom,order:ttb' " match files top-to-bottom
+let g:ctrlp_switch_buffer = 0 " always open file in new buffer
+let g:ctrlp_working_path_mode = 0 " allow change of working directory
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+nnoremap <leader>. :CtrlPTag<cr>
+
+""""""""""""""""""""""""""
+" vim-airline
+""""""""""""""""""""""""""
+
+let g:airline_theme = 'solarized'
+let g:airline#extensions#tabline#enabled = 1
+
+" set rtp+=/Users/martin/.pyenv/versions/3.4.3/lib/python3.4/site-packages/powerline/bindings/vim
+" python from powerline.vim import setup as powerline_setup
+" python powerline_setup()
+" python del powerline_setup
+
+
+" autocmd! User GoyoEnter Limelight
+" autocmd! User GoyoLeave Limelight!
+" let g:limelight_conceal_ctermfg = (&bg == 'dark') ? 'red' : 'gray'
+
+function! s:goyo_enter()
+  silent !tmux set status off
+  set noshowmode
+  set noshowcmd
+  set linespace=7
+  set scrolloff=999
+  set listchars=
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  set showmode
+  set showcmd
+  set scrolloff=5
+  set linespace=0
+  set list
+  set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 """"""""""""""""""""""""""
 " Unorganized  stuff
@@ -186,12 +263,6 @@ nmap <leader>j <C-w><C-j>
 nmap <leader>k <C-w><C-k>
 nmap <leader>l <C-w><C-l>
 
-nnoremap <silent> <leader>h :TmuxNavigateLeft<cr>
-nnoremap <silent> <leader>j :TmuxNavigateDown<cr>
-nnoremap <silent> <leader>k :TmuxNavigateUp<cr>
-nnoremap <silent> <leader>l :TmuxNavigateRight<cr>
-nnoremap <silent> <leader>p :TmuxNavigatePrevious<cr>
-
 " More natural split opening
 set splitbelow
 set splitright
@@ -199,7 +270,6 @@ set splitright
 " Moving between tabs
 nmap <leader>n :tabnext
 nmap <leader>N :tabprev
-
 
 " get rid of annoying backup behaviour
 set nobackup
@@ -218,9 +288,13 @@ map H ^
 map L $
 
 " remap space bar to search, case insensitive
-:nmap <Space> /\c
+nmap <Space> /
 
-" Better default behavior with up and down
+" UNINDENT with Shift-Tab
+nnoremap <S-Tab> << " for command mode
+inoremap <S-Tab> <C-d> " for insert mode
+
+" move vertically by visual line
 nnoremap j gj
 nnoremap k gk
 nnoremap <Down> gj
@@ -233,6 +307,10 @@ nmap <leader>w :w!<CR>
 nmap <leader><Esc> :q!<CR>
 
 imap <C-BS> <C-W>
+
+" Close buffer without closing window
+" https://stackoverflow.com/questions/1444322/how-can-i-close-a-buffer-without-closing-the-window
+map <leader>d :bp<bar>sp<bar>bn<bar>bd<CR>
 
 " Spell checking
 " set spell
@@ -267,11 +345,6 @@ let g:AutoCloseProtectedRegions = ["Character"]
 " don't need /g after :s or :g
 set gdefault
 
-" Indent soft wraps
-set breakindent
-" set showbreak=\ \
-set showbreak=\  
-set columns=79
 
 " For vim-latex grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
@@ -297,13 +370,11 @@ function! SwitchLaTeXCompilers()
 endfunction
 map <Leader>lx :<C-U>call SwitchLaTeXCompilers()<CR>
 
+
 " Rebind vim-latex C-j to jump to <++>
 imap <C-g> <Plug>IMAP_JumpForward
 nmap <C-g> <Plug>IMAP_JumpForward
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-nnoremap <leader>. :CtrlPTag<cr>
 
 
 " Bash-like autocomplete
@@ -316,14 +387,26 @@ let g:tmux_navigator_no_mappings = 1
 " Turn on syntax highlighting
 syntax on
 
-" Syntax highlighting of different languages
+" Set filetype for unknown types
 au BufRead,BufNewFile *.tikz set filetype=tex
 au BufRead,BufNewFile .bowerrc set filetype=json
 autocmd BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Procfile,Thorfile,config.ru}  set ft=ruby
 
-" 4 indents in python files only (PEP8)
-autocmd FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
-au BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
+augroup configgroup
+  autocmd!
+  autocmd VimEnter * highlight clear SignColumn
+  autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
+        \:call <SID>StripTrailingWhitespaces()
+  autocmd FileType ruby setlocal commentstring=#\ %s
+  autocmd FileType python setlocal commentstring=#\ %s
+  autocmd FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
+  autocmd Filetype python setlocal ai
+  autocmd Filetype python setlocal shiftwidth=4
+  autocmd Filetype python setlocal tabstop=4
+  autocmd Filetype python setlocal sta
+  autocmd Filetype python setlocal expandtab
+  autocmd Filetype python setlocal fo=croql
+augroup END
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -333,7 +416,6 @@ set ffs=unix,dos,mac "Default file types
 " Colorscheme stuff 
 colorscheme solarized
 set background=dark
-let g:airline_theme = 'solarized'
 
 " Vim pane resizing via mouse in tmux
 " src: http://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux
@@ -350,6 +432,7 @@ if has('gui_running')
   set guioptions -=T
 endif
 
+
 " OS specific settings below
 if has('win32')
   map <C-t> :tabnew<CR>
@@ -358,6 +441,7 @@ if has('win32')
 
   if has('gui_running')
     set guifont=Consolas:h11
+    set gfn=Consolas:h9:cANSI
     set backspace=2
   endif
 endif
