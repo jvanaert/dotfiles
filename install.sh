@@ -40,6 +40,7 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   pip install pygments
   pip install "requests[security]"
   pip install howdoi
+  pip install powerline-status
 
   # Setup Ruby env
   rbenv install 2.1.2
@@ -90,28 +91,39 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   sudo tlmgr install logreq 
   sudo tlmgr install fontawesome
   sudo tlmgr install biber 
+  sudo tlmgr install nag 
+  sudo tlmgr install latexmk 
+  sudo tlmgr install csquotes 
+  sudo tlmgr install tikz-qtree
+
+  # Disable mouse acceleration
+  defaults write .GlobalPreferences com.apple.mouse.scaling -1
+
+  # Install Git repo stuff
+  git clone git@github.com:powerline/fonts.git
+  cd fonts && ./install && cd ..pip install --user powerline-status
+
+  # Install vim plugins
+  vim +PlugInstall +qall
+
+  # Set shell to zsh
+  chsh -s /bin/zsh
+
+  # Set up tmux plugin manager (TPM)
+  # start a server but don't attach to it
+  tmux start-server
+  # create a new session but don't attach to it either
+  tmux new-session -d
+  # install the plugins
+  ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+  # killing the server is not required
+  tmux kill-server
+
+  # Finally, delete myself
+  echo "All done installing Martin's dotfiles."
+  rm -- "$0"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then # Linux
   # need rbenv, ruby-build, pyenv
 elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then # Windows
   # need rbenv, ruby-build, pyenv
 fi
-
-# Install vim plugins
-vim +PlugInstall +qall
-
-# Set shell to zsh
-chsh -s /bin/zsh
-
-# Set up tmux plugin manager (TPM)
-# start a server but don't attach to it
-tmux start-server
-# create a new session but don't attach to it either
-tmux new-session -d
-# install the plugins
-~/.tmux/plugins/tpm/scripts/install_plugins.sh
-# killing the server is not required
-tmux kill-server
-
-# Finally, delete myself
-echo "All done installing Martin's dotfiles."
-rm -- "$0"

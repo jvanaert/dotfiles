@@ -5,9 +5,9 @@ export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 # export PATH="$(brew --prefix homebrew/php/php54)/bin:$PATH"
-export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+# export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 
-export EDITOR="nvim";
+export EDITOR="vim";
 
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768;
@@ -28,9 +28,8 @@ export GREP_OPTIONS="--color=auto";
 # Link Homebrew casks in `/Applications` rather than `~/Applications`
 export HOMEBREW_CASK_OPTS="--appdir=/Applications";
 
-
 # Set locale info
-export LC_ALL=en_US.UTF-8  
+export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Syntax highlighting of less
@@ -38,3 +37,9 @@ export LESSOPEN="| pygmentize %s"
 
 # antlr4 classpath definition
 export CLASSPATH=".:/usr/local/Cellar/antlr/4.5/antlr-4.5-complete.jar:$CLASSPATH"
+
+export DOCKER_TLS_VERIFY=1
+export DOCKER_HOST=tcp://localhost:2376
+export DOCKER_CERT_PATH=/Users/martin/.docker/machine/machines/default
+export DOCKER_MACHINE_NAME=default
+

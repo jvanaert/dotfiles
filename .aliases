@@ -6,22 +6,14 @@ alias .....="cd ../../../.."
 
 # Shortcuts
 alias drop="cd ~/Documents/Dropbox"
-alias ucsd="cd ~/Documents/Dropbox/UCSD"
-alias 210="cd ~/Documents/Dropbox/UCSD/CSE-210"
-alias 232="cd ~/Documents/Dropbox/UCSD/CSE-232B"
-alias 190="cd ~/Documents/Dropbox/UCSD/CSE-190"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
+alias mi="cd ~/projects/mi906e15"
 alias h="history"
-alias g="git"
-alias gs="git status -s"
+alias gs="g s"
 
 alias dotfiles="cd ~/Projects/Dotfiles"
-
-#alias ls='/usr/local/Cellar/coreutils/8.23_1/bin/gls -G'
-#alias ls='gls --color=auto --group-directories-first'
-
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
@@ -74,20 +66,14 @@ alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Re
 
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-
 # Make rake work with zsh
 alias rake="noglob rake"
-
 alias mvim='mvim --remote-silent'
-alias archey='archey -c'
-
-alias bx='bundle exec'
-
-alias hist='history  | grep -m 10'
-
-alias top='htop'
-
 alias vim='nvim'
+alias archey='archey -c'
+alias bx='bundle exec'
+alias hist='history  | grep -m 10'
+alias top='htop'
 
 pygmentizeHTML() {
   pygmentize -O full -f html $1 > "$1".html
@@ -100,5 +86,10 @@ tarFolder() {
 alias tarFolder=tarFolder
 
 alias steam-wine='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe -no-dwrite >/dev/null 2>&1 &'
-
+alias steam-repop='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files/Steam/steamapps/common/The\ Repopulation/player_client.exe >/dev/null 2>&1 &'
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
+
+# ZSH online help
+# unalias run-help
+# alias run-help
+# HELPDIR=/usr/local/share/zsh/help
