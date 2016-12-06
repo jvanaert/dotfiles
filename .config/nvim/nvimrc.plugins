@@ -1,0 +1,105 @@
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
+call plug#begin('~/.config/nvim/.vim/plugged')
+
+" UI & util
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-unimpaired'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] } | Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+Plug 'rizzatti/dash.vim', { 'on': 'Dash' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'carlitux/deoplete-ternjs'
+Plug 'zchee/deoplete-jedi'
+" Plug 'majutsushi/tagbar'
+Plug 'godlygeek/tabular' " to line up text
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Raimondi/delimitMate'
+" Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'sjl/gundo.vim'
+Plug 'terryma/vim-multiple-cursors'
+" Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
+Plug 'neomake/neomake'
+Plug 'mhinz/vim-startify'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'kassio/neoterm'
+Plug 'digitaltoad/vim-pug'
+
+" Smaller languages
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
+Plug 'tpope/vim-haml', { 'for': ['haml', 'sass', 'scss'] }
+Plug 'vim-scripts/HTML-AutoCloseTag', { 'for': 'html' }
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['html', 'css', 'scss'] }
+Plug 'skammer/vim-css-color', { 'for': ['html', 'css', 'scss'] }
+Plug 'wavded/vim-stylus', { 'for': 'stylus' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'tpope/vim-commentary'
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+Plug 'jtratner/vim-flavored-markdown', { 'for': 'markdown' }
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
+Plug 'keith/tmux.vim', { 'for': 'tmux' }
+Plug 'keith/swift.vim', { 'for': 'swift' }
+Plug 'mustache/vim-mustache-handlebars', { 'for': ['html.handlebars', 'html.mustache'] }
+Plug 'vim-latex/vim-latex', { 'for': 'tex' }
+Plug 'chrisbra/csv.vim', { 'for': 'csv' }
+
+" Uncommented until I learn how to use them
+" Plug 'cespare/vim-bclose'
+" Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+
+" Tmux integration
+" Plug 'jpalardy/vim-slime' " send text to tmux session
+Plug 'christoomey/vim-tmux-navigator'
+
+" Haskell
+" Plug 'bitc/vim-hdevtools',  { 'for': 'haskell' }
+" Plug 'eagletmt/neco-ghc',   { 'for': 'haskell' }
+" Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+" Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
+" Plug 'raichoo/haskell-vim', { 'for': 'haskell' }
+" Plug 'Shougo/vimproc.vim',  { 'for': 'haskell', 'do': 'make' }
+
+" Ruby
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby', 'haml', 'slim'] }
+Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'haml', 'slim'] }
+" Plug 'thoughtbot/vim-rspec' | Plug 'tpope/vim-dispatch', { 'for': 'ruby' }
+" Plug 'scrooloose/nerdcommenter', { 'for': 'ruby' }
+Plug 'tpope/vim-endwise', { 'for': 'ruby' } " automatically add 'end'
+" Plug 'p0deje/vim-ruby-interpolation', { 'for': 'ruby' }
+" Plug 'stefanoverna/vim-i18n', { 'for': 'ruby' }
+
+" CSS color highlighter
+Plug 'gorodinskiy/vim-coloresque', { 'for': ['css', 'sass', 'scss', 'less'] }
+
+" Python
+Plug 'nvie/vim-flake8', { 'for': 'python' } " python syntax checker
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+
+" JavaScript
+Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+" Plug 'mtscout6/syntastic-local-eslint.vim', {'for': 'javascript' }
+" Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install'  }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+
+" Themes
+"Plug 'altercation/vim-colors-solarized'
+" Plug 'nanotech/jellybeans.vim'
+" Plug 'tomasr/molokai'
+Plug 'chriskempson/base16-vim'
+
+call plug#end()
