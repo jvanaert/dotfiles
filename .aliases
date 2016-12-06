@@ -9,11 +9,13 @@ alias drop="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
-alias mi="cd ~/projects/mi906e15"
+alias trigger="cd ~/Projects/trigger"
+alias edward="cd ~/Projects/ne/edward"
 alias h="history"
 alias gs="g s"
 
 alias dotfiles="cd ~/Projects/Dotfiles"
+
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
@@ -80,14 +82,20 @@ pygmentizeHTML() {
 }
 alias pygmentizeHTML=pygmentizeHTML
 
+dotPNG() {
+  dot -Tpng $1.dot -o $1.png
+}
+alias dotPNG=dotPNG
+
 tarFolder() {
   tar -zcf $1.tar.gz "$1"
 }
 alias tarFolder=tarFolder
 
 alias steam-wine='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe -no-dwrite >/dev/null 2>&1 &'
-alias steam-repop='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files/Steam/steamapps/common/The\ Repopulation/player_client.exe >/dev/null 2>&1 &'
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
+
+alias bne='curl wttr.in/brisbane'
 
 # ZSH online help
 # unalias run-help
