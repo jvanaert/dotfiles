@@ -40,7 +40,6 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   pip install pygments
   pip install "requests[security]"
   pip install howdoi
-  pip install powerline-status
 
   # Setup Ruby env
   rbenv install 2.1.2
@@ -48,10 +47,13 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   rbenv rehash
 
   # Install gems
-  gem install --no-ri --no-rdoc bundler 
+  gem install --no-ri --no-rdoc bundler
   gem install --no-ri --no-rdoc lunchy
   gem install --no-ri --no-rdoc tmuxinator
   gem install --no-ri --no-rdoc powder
+  gem install --no-ri --no-rdoc overcommit
+  gem install fasterer
+  gem install rubycritic
 
   # Node
   npm install -g jshint
@@ -75,10 +77,10 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   sudo tlmgr install multirow
   sudo tlmgr install authblk
   sudo tlmgr install titlesec
-  sudo tlmgr install todonotes 
+  sudo tlmgr install todonotes
   sudo tlmgr install siunitx
   sudo tlmgr install csv
-  sudo tlmgr install import 
+  sudo tlmgr install import
   sudo tlmgr install collection-latexrecommended
   sudo tlmgr install collection-fontsrecommended
   sudo tlmgr install collection-fontsrecommended
@@ -86,22 +88,22 @@ if [ "$(uname)" == "Darwin" ]; then # OS X
   sudo tlmgr install collection-fontsrecommended
   sudo tlmgr install unicode-math
   sudo tlmgr install filehook
-  sudo tlmgr install textpos 
-  sudo tlmgr install biblatex 
-  sudo tlmgr install logreq 
+  sudo tlmgr install textpos
+  sudo tlmgr install biblatex
+  sudo tlmgr install logreq
   sudo tlmgr install fontawesome
-  sudo tlmgr install biber 
-  sudo tlmgr install nag 
-  sudo tlmgr install latexmk 
-  sudo tlmgr install csquotes 
+  sudo tlmgr install biber
+  sudo tlmgr install nag
+  sudo tlmgr install latexmk
+  sudo tlmgr install csquotes
   sudo tlmgr install tikz-qtree
 
   # Disable mouse acceleration
   defaults write .GlobalPreferences com.apple.mouse.scaling -1
+  defaults write .GlobalPreferences com.apple.scrollwheel.scaling -1
 
   # Install Git repo stuff
   git clone git@github.com:powerline/fonts.git
-  cd fonts && ./install && cd ..pip install --user powerline-status
 
   # Install vim plugins
   vim +PlugInstall +qall
