@@ -1,18 +1,11 @@
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
-endif
-
 call plug#begin('~/.config/nvim/.vim/plugged')
 
 " UI & util
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] } | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' | Plug 'tpope/vim-rhubarb'
 Plug 'bling/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug 'rizzatti/dash.vim', { 'on': 'Dash' }
@@ -33,12 +26,12 @@ Plug 'neomake/neomake'
 Plug 'mhinz/vim-startify'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'kassio/neoterm'
-Plug 'digitaltoad/vim-pug'
+Plug 'janko-m/vim-test'
 
 " Smaller languages
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
-Plug 'tpope/vim-haml', { 'for': ['haml', 'sass', 'scss'] }
+Plug 'tpope/vim-haml', { 'for': 'haml' }
+Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'vim-scripts/HTML-AutoCloseTag', { 'for': 'html' }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
@@ -56,6 +49,7 @@ Plug 'keith/swift.vim', { 'for': 'swift' }
 Plug 'mustache/vim-mustache-handlebars', { 'for': ['html.handlebars', 'html.mustache'] }
 Plug 'vim-latex/vim-latex', { 'for': 'tex' }
 Plug 'chrisbra/csv.vim', { 'for': 'csv' }
+Plug 'nikvdp/ejs-syntax', { 'for': 'ejs' }
 
 " Uncommented until I learn how to use them
 " Plug 'cespare/vim-bclose'
@@ -77,7 +71,6 @@ Plug 'christoomey/vim-tmux-navigator'
 " Ruby
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby', 'haml', 'slim'] }
 Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby', 'haml', 'slim'] }
-" Plug 'thoughtbot/vim-rspec' | Plug 'tpope/vim-dispatch', { 'for': 'ruby' }
 " Plug 'scrooloose/nerdcommenter', { 'for': 'ruby' }
 Plug 'tpope/vim-endwise', { 'for': 'ruby' } " automatically add 'end'
 " Plug 'p0deje/vim-ruby-interpolation', { 'for': 'ruby' }
@@ -92,14 +85,16 @@ Plug 'nvie/vim-flake8', { 'for': 'python' } " python syntax checker
 
 " JavaScript
 Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-" Plug 'mtscout6/syntastic-local-eslint.vim', {'for': 'javascript' }
+Plug 'jaawerth/nrun.vim'
 " Plug 'marijnh/tern_for_vim', { 'for': 'javascript', 'do': 'npm install'  }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 
 " Themes
-"Plug 'altercation/vim-colors-solarized'
-" Plug 'nanotech/jellybeans.vim'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'iCyMind/NeoSolarized'
+Plug 'frankier/neovim-colors-solarized-truecolor-only'
 " Plug 'tomasr/molokai'
-Plug 'chriskempson/base16-vim'
+" Plug 'chriskempson/base16-vim'
+" Plug 'morhetz/gruvbox'
 
 call plug#end()

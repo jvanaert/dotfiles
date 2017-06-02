@@ -1,7 +1,6 @@
-let g:python_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3.5'
-let g:ycm_python_binary_path = '/usr/local/bin/python3.5'
-
+" let g:python_host_prog = '/usr/local/var/pyenv/versions/3.7.13/bin/python'
+let g:loaded_python_provider = 1 " disable python 2.7
+let g:python3_host_prog = '/usr/local/var/pyenv/versions/3.6.0/bin/python'
 
 " Load plugins
 source ~/.config/nvim/nvimrc.plugins
@@ -35,7 +34,6 @@ set cc=100 " highlight column 100
 set hidden " allow switching buffer without saving"
 
 " Whitespace defaults
-filetype plugin indent on
 set expandtab
 set shiftwidth=2
 set tabstop=2
@@ -51,6 +49,8 @@ set mousehide       " Hide mouse after chars typed
 set novisualbell    " No blinking
 set noerrorbells    " No noise
 set vb t_vb=        " disable any beeps or flashes on error
+
+set termguicolors   " enable true color support
 
 
 " set autowrite        " Writes on make/shell commands
@@ -95,14 +95,10 @@ autocmd! bufwritepost .vimrc.plugins source ~/.config/nvim/nvimrc.plugins
 " Save with sudo
 cmap w!! %!sudo tee > /dev/null %
 
-" make `-` and `_` work like `o` and `O` without leaving you stuck in insert
-nnoremap - o<esc>
-nnoremap _ O<esc>
-
 " Turn off the christmas lights
 nnoremap <Leader><cr> :nohlsearch<cr>
 
-" Remove whitespace
+" Remove whitespace with ,tw
 nnoremap <Leader>tw :%s/\s\+$//e<CR>
 
 " fix regexes default regex handling by
@@ -125,13 +121,15 @@ set fo-=t  " Do no auto-wrap text using textwidth (does not
 " YouCompleteMe / https://github.com/Shougo/deoplete.nvim
 """"""""""""""""""""""""""
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#auto_completion_start_length = 1
 
 let g:tern_request_timeout = 1
 let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
 
 " Ignore ruby deoplete sources, as it locks UI
-let g:deoplete#ignore_sources = {}
-let g:deoplete#ignore_sources.ruby = ['omni']
+" let g:deoplete#ignore_sources = {}
+" let g:deoplete#ignore_sources.ruby = ['omni']
 
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -156,42 +154,36 @@ let g:tagbar_autofocus = 1
 " vim-slime and tmux related settings
 """"""""""""""""""""""""""
 
-" let g:slime_target = "tmux"
-"
 let g:tmux_navigator_save_on_switch = 1
-let g:tmux_navigator_no_mappings = 1
-
-" nnoremap <leader>j :TmuxNavigateDown<cr>
-" nnoremap <leader>k :TmuxNavigateUp<cr>
-" nnoremap <leader>h :TmuxNavigateRight<cr>
-" nnoremap <leader>l :TmuxNavigatePrevious<cr>
 
 """"""""""""""""""""""""""
 " Ruby and Rails
 """"""""""""""""""""""""""
 
-" Neoterm
-map <leader>f :w<CR>:call neoterm#test#run('file')<CR>
-map <leader>r :w<CR>:call neoterm#test#run('current')<CR>
-map <leader>l :w<CR>:call neoterm#test#rerun()<CR>
-" map <leader>a :call neoterm#test#run('all')<CR>
+" Neoterm and vim-test
+let test#strategy = "neovim" "neoterm
+map <leader>a :w<CR>:TestSuite<CR>
+map <leader>f :w<CR>:TestFile<CR>
+map <leader>r :w<CR>:TestNearest<CR>
+map <leader>l :w<CR>:TestLast<CR>
+map <leader>v :w<CR>:TestVisit<CR>
+
+let g:ruby_indent_assignment_style = 'variable'
+let g:ruby_indent_block_style = 'do'
 
 " Useful maps
-" hide/close terminal
-nnoremap <silent> <leader>th :call neoterm#close()<cr>
-nnoremap <silent> <leader>tc :call neoterm#kill()<cr>
-" clear terminal
-nnoremap <silent> <leader>tl :call neoterm#clear()<cr>
-" kills the current job (send a <c-c>)
-nnoremap <silent> <leader>tk :call neoterm#kill()<cr>
+tnoremap <Esc> <C-\><C-n> " map esc to exit terminal mode
+" print caller information for ruby
+" https://tenderlovemaking.com/2016/02/05/i-am-a-puts-debuggerer.html
+nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 
 " Rails commands
 " command! Troutes :T rake routes
 " command! -nargs=+ Troute :T rake routes | grep <args>
 " command! Tmigrate :T rake db:migrate<Paste>
 
-let g:neoterm_rspec_lib_cmd = "bin/rspec"
-let g:neoterm_position = 'horizontal'
+" let g:neoterm_rspec_lib_cmd = "bin/rspec"
+" let g:neoterm_position = 'horizontal'
 "
 """"""""""""""""""""""""""
 " Neomake
@@ -212,9 +204,12 @@ let g:neomake_sh_enabled_checkers = ['shellcheck']
 let g:neomake_python_enabled_checkers = ['python', 'flake8']
 let g:neomake_yaml_enabled_makers = ['yamllint']
 let g:neomake_haml_enabled_makers = ['hamllint']
+let g:neomake_json_enabled_makers = ['jsonlint']
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_javascript_jsx_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
 let g:neomake_tex_enabled_makers = ['chktex'] " 'lacheck'
+au BufEnter *.js let b:neomake_javascript_eslint_exe = nrun#Which('eslint')
 
 """"""""""""""""""""""""""
 " Syntastic
@@ -245,17 +240,6 @@ let g:neomake_tex_enabled_makers = ['chktex'] " 'lacheck'
 " let g:syntastic_quiet_messages = {
 "   \ "level": "warnings",
 "   \ "regex": "Could not execute " }
-
-" Toggle between active and passive type checking
-" map <silent> <Leader>e :Errors<CR>
-" map <Leader>t :SyntasticToggleMode<CR>
-" let g:syntastic_python_checkers=['flake8'] " use flake8
-" let g:syntastic_ruby_checkers=['mri', 'rubocop']
-" let g:syntastic_ruby_exec= '~/.rbenv/shims/ruby.'
-" let g:syntastic_ruby_rubocop_exec=['~/.rbenv/shims/rubocop']
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_jsx_checkers = []
-" let g:syntastic_html_tidy_exec = 'tidy'
 
 let g:jsx_ext_required = 0
 
@@ -293,6 +277,10 @@ map <C-f> :NERDTreeFind<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeMapJumpNextSibling = '' " conflicts with vim-tmux-navigator C-j
+let g:NERDTreeWinPos = "right"
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrows = 1
 
 """"""""""""""""""""""""""
 " Mustache/handlebars
@@ -319,10 +307,10 @@ endif
 """"""""""""""""""""""""""
 " startify
 """"""""""""""""""""""""""
-let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'}, '~/.config/nvim/nvimrc.plugins', '~/.zshrc' ]
-if has('nvim')
-    au! TabNewEntered * Startify
-endif
+" let g:startify_bookmarks = [ {'c': '~/.config/nvim/init.vim'}, '~/.config/nvim/nvimrc.plugins', '~/.zshrc' ]
+" if has('nvim')
+"   au! TabNewEntered * Startify
+" endif
 
 
 """"""""""""""""""""""""""
@@ -346,27 +334,46 @@ map <C-b> :Buffers<CR>
 
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-" Colorscheme stuff
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
-
 " colorscheme base16-tomorrow-night
-colorscheme base16-eighties
-" set background=dark
-
+" colorscheme base16-eighties
+" colorscheme gruvbox
+set t_Co=256
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
+"
 """"""""""""""""""""""""""
 " vim-airline
 """"""""""""""""""""""""""
 
+let g:airline_theme = 'solarized'
 let g:tmuxline_preset = 'minimal'
-let g:airline_theme = 'base16_eighties'
-let g:airline#extensions#tabline#enabled = 0
+" let g:airline#extensions#tabline#enabled = 0
 let g:airline_powerline_fonts = 1
-let showtabline = 0
+" let showtabline = 0
+"
+"" airline settings
+" remove separators
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+" remove unused modes
+let g:airline_enable_syntastic=0
+" set second section to filename
+let g:airline_section_b="%f"
+" empty third and fourth sections
+let g:airline_section_c=""
+let g:airline_section_x=""
+" put filetype in fifth section
+let g:airline_section_y="%Y"
+"
+
+" For solarized
+" set t_8f=^[[38;2;%lu;%lu;%lum
+" set t_8b=^[[48;2;%lu;%lu;%lum
 
 " let g:limelight_conceal_ctermfg = (&bg == 'dark') ? 'red' : 'gray'
+
+let g:goyo_width = 100
 
 function! s:goyo_enter()
   silent !tmux set status off
@@ -420,7 +427,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Hide ~ chars at end of file
 " https://github.com/neovim/neovim/issues/2067
-hi EndOfBuffer ctermfg=bg
+" hi EndOfBuffer ctermfg=bg
 
 " Leader-<movement> for moving around in windows
 " nmap <C-h> <C-w><C-h>
@@ -550,6 +557,8 @@ set wildmenu
 au BufRead,BufNewFile *.tikz set filetype=tex
 au BufRead,BufNewFile .bowerrc set filetype=json
 au BufRead,BufNewFile .eslintrc set filetype=json
+au BufRead,BufNewFile brakeman.ignore set filetype=json
+au BufRead,BufNewFile .reek set filetype=yaml
 autocmd BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Procfile,Thorfile,config.ru,Capfile} set ft=ruby
 
 augroup configgroup

@@ -9,8 +9,11 @@ alias drop="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
-alias trigger="cd ~/Projects/trigger"
+alias trigger="cd ~/Projects/ne/trigger"
 alias edward="cd ~/Projects/ne/edward"
+alias ne="cd ~/Projects/ne"
+alias floodi="cd ~/Projects/ne/floodintel/floodintel-api"
+alias woodbo="cd ~/Projects/woodbo/social-v2"
 alias h="history"
 alias gs="g s"
 
@@ -92,7 +95,6 @@ tarFolder() {
 }
 alias tarFolder=tarFolder
 
-alias steam-wine='WINEDEBUG=-all wine ~/.wine/drive_c/Program\ Files/Steam/Steam.exe -no-dwrite >/dev/null 2>&1 &'
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 
 alias bne='curl wttr.in/brisbane'
@@ -101,3 +103,6 @@ alias bne='curl wttr.in/brisbane'
 # unalias run-help
 # alias run-help
 # HELPDIR=/usr/local/share/zsh/help
+
+# https://github.com/pyenv/pyenv/issues/106
+alias brew="env PATH=${PATH//$(pyenv root)\/shims:/} brew"

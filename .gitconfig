@@ -1,8 +1,8 @@
 [alias]
 
   # View abbreviated SHA, description, and history graph of the latest 20 commits
-  l = log --pretty=oneline -n 20 --graph --abbrev-commit
-  
+  l = log --pretty=oneline -n 50 --graph --abbrev-commit
+
   # View the current working tree status using the short format
   s = status -s
 
@@ -11,8 +11,6 @@
 
   a = add
   c = commit
-
-  
 
   # Pull in remote changes for the current repository and all its submodules
   p = !"git pull; git submodule foreach git pull origin master"
@@ -50,6 +48,15 @@
   # a.k.a. 'delete merged'
   dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
+  # Find the largest files throughout history
+  largestfiles = "!git ls-tree -r -t -l --full-name HEAD | sort -n -k 4 | tail -n 10"
+
+  # Find the size of the repository
+  size = "!git count-objects -vH"
+
+  # https://stackoverflow.com/questions/927358/how-do-you-undo-the-last-commit
+	undo-commit = reset --soft HEAD^
+
   # List contributors with number of commits
   contributors = shortlog --summary --numbered
 
@@ -68,8 +75,8 @@
   # Make `git rebase` safer on OS X
   # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
   trustctime = false
-	autocrlf = input
-	excludesfile = /Users/martin/.gitignore_global
+  autocrlf = input
+  excludesfile = /Users/martin/.gitignore_global
 
 [color "branch"]
 
@@ -129,9 +136,12 @@
 [url "git://gist.github.com/"]
 
   insteadOf = "gist:"
+
 [user]
 	name = Martin Bjeldbak Madsen
 	email = martinbmadsen@gmail.com
+	signingkey = 2B8CD9E1
+	useconfigonly = true
 [filter "media"]
 	required = true
 	clean = git media clean %f
@@ -140,9 +150,15 @@
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
 	required = true
-[filter "lfs"]
-	clean = git lfs clean %f
-	smudge = git lfs smudge %f
-	required = true
 [credential]
 	helper = osxkeychain
+[filter "lfs"]
+	smudge = git-lfs smudge %f
+	required = true
+	clean = git-lfs clean %f
+[commit]
+	gpgsign = true
+[gui]
+	recentrepo = /Users/martin/Projects/ne/trigger
+[gpg]
+	program = /usr/local/MacGPG2/bin/gpg2

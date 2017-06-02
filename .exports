@@ -1,17 +1,18 @@
-export PATH="$HOME/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/texbin:$PATH"
-export PATH="$HOME/.cabal/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$PATH"
-# export PATH="$HOME/.composer/vendor/bin:$PATH"
+path+=("$HOME/bin")
+path+=("/usr/local/sbin")
+path+=("/usr/texbin")
+path+=("$HOME/.cabal/bin")
+path+=("$HOME/.yarn/bin")
 
-# export PATH="$(brew --prefix homebrew/php/php54)/bin:$PATH"
-# export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
-#
+# path+=("$(brew --prefix homebrew/php/php54)/bin:$PATH")
+# path+=("$(brew --prefix homebrew/php/php56)/bin:$PATH")
+
+export PATH
+
 # TMUX 2.2 kqueue woraround https://github.com/tmux/tmux/issues/475
 export EVENT_NOKQUEUE=1
 
-export EDITOR=vim;
+export EDITOR=nvim;
 
 export WORKON_HOME=$HOME/.virtualenvs
 
@@ -46,10 +47,10 @@ export LESSOPEN="| pygmentize %s"
 # antlr4 classpath definition
 export CLASSPATH=".:/usr/local/Cellar/antlr/4.5/antlr-4.5-complete.jar:$CLASSPATH"
 
-export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://localhost:2376
-export DOCKER_CERT_PATH=/Users/martin/.docker/machine/machines/default
-export DOCKER_MACHINE_NAME=default
+# export DOCKER_TLS_VERIFY=1
+# export DOCKER_HOST=tcp://localhost:2376
+# export DOCKER_CERT_PATH=/Users/martin/.docker/machine/machines/default
+# export DOCKER_MACHINE_NAME=default
 
 # export THEME=base16_eighties
 export THEME_VIM=base16-tomorrow-night
@@ -59,7 +60,7 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 
 # Maybe
 # https://unix.stackexchange.com/questions/139082/zsh-set-term-screen-256color-in-tmux-but-xterm-256color-without-tmux
-export TERM=xterm-256color
+export TERM=screen-256color
 
 # Use overcommit for all repos
 # export GIT_TEMPLATE_DIR=`overcommit --template-dir`
@@ -67,3 +68,7 @@ export TERM=xterm-256color
 export PYENV_ROOT=/usr/local/var/pyenv
 
 export LOCAL_ENCFS="$HOME/.encfs6.local.xml"
+
+export ZPLUG_HOME=/usr/local/opt/zplug
+export NVM_DIR="$HOME/.nvm"
+export NVM_LAZY_LOAD=true
