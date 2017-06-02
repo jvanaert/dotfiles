@@ -1,0 +1,13 @@
+# Git credentials
+GIT_AUTHOR_NAME="Martin Bjeldbak Madsen"
+GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+GIT_AUTHOR_EMAIL="martinbmadsen@gmail.com"
+GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+
+git config --global user.name "$GIT_AUTHOR_NAME"
+git config --global user.email "$GIT_AUTHOR_EMAIL"
+
+# Fix C-h binding for tmux and vim-tmux-navigator
+# https://github.com/christoomey/vim-tmux-navigator/issues/61
+# infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
+# tic $TERM.ti
